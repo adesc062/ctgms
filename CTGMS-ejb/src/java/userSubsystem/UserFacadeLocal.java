@@ -15,9 +15,9 @@ import javax.ejb.Local;
 public interface UserFacadeLocal {
        
     public User login(String loginId, String unhashedPassword);
-    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] password, byte[] salt,
+    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword,
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
             String bankAccountNumber, Requester.RequesterType requesterType);
-    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] password, byte[] salt,
+    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword,
             String employeeNumber);
 }

@@ -10,12 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author adesc062
  */
 @Entity
+@Table(name="Requesters7972857")
 public class Requester extends User implements Serializable {
     
     public enum RequesterType {
@@ -31,9 +33,12 @@ public class Requester extends User implements Serializable {
     private String bankAccountNumber;
     private RequesterType requesterType;
     
-    public Requester(String loginId, String surname, String givenNames, String email, byte[] password, byte[] salt,
-            String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic, String bankAccountNumber, RequesterType requesterType) {        
-        super(loginId, surname, givenNames, email, password, salt);
+    public Requester() {}
+    
+    public Requester(String loginId, String surname, String givenNames, String email, byte[] hashedPassword, byte[] salt,
+            String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
+            String bankAccountNumber, RequesterType requesterType) {        
+        super(loginId, surname, givenNames, email, hashedPassword, salt);
         this.studentNumber = studentNumber;
         this.academicUnit = academicUnit;
         this.program = program;

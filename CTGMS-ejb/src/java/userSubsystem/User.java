@@ -11,12 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 
 /**
  *
  * @author adesc062
  */
 @Entity
+@Table(name="Users7972857")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,16 +28,18 @@ public class User implements Serializable {
     private String givenNames;
     private String email;
     @Lob
-    private byte[] password;
+    private byte[] hashedPassword;
     @Lob
     private byte[] salt;
+    
+    public User() {}
 
-    public User(String loginId, String surname, String givenNames, String email, byte[] password, byte[] salt) {
+    public User(String loginId, String surname, String givenNames, String email, byte[] hashedPassword, byte[] salt) {
         this.loginId = loginId;
         this.surname = surname;
         this.givenNames = givenNames;
         this.email = email;
-        this.password = password;
+        this.hashedPassword = hashedPassword;
         this.salt = salt;
     }
     
@@ -68,17 +72,17 @@ public class User implements Serializable {
     }
     
     /**
-     * @return the password
+     * @return the hashedPassword
      */
-    public byte[] getPassword() {
-        return password;
+    public byte[] getHashedPassword() {
+        return hashedPassword;
     }
 
     /**
-     * @param password the password to set
+     * @param hashedPassword the password to set
      */
-    public void setPassword(byte[] password) {
-        this.password = password;
+    public void setHashedPassword(byte[] hashedPassword) {
+        this.hashedPassword = hashedPassword;
     }
 
     /**
