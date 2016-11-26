@@ -5,32 +5,26 @@
  */
 package applicationSubSystem;
 
-
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import userSubsystem.RequesterTypeEnum;
+
 /**
  *
  * @author user1
  */
 @Entity
-@Table(name="ExpenseEntries7972857")
-public class ExpenseEntry implements Serializable {
+public class GrantLimit implements Serializable {
 
-    private ExpensePolicy policy;
-    private int expenseAmount;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    public void setup(ExpensePolicy policy, int expenseAmount) {
-        this.policy = policy;
-        this.expenseAmount = expenseAmount;
-    }
+    private RequesterTypeEnum requesterType;
+    private int maxGrant;
 
     public Long getId() {
         return id;
@@ -50,10 +44,10 @@ public class ExpenseEntry implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ExpenseEntry)) {
+        if (!(object instanceof GrantLimit)) {
             return false;
         }
-        ExpenseEntry other = (ExpenseEntry) object;
+        GrantLimit other = (GrantLimit) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -62,35 +56,35 @@ public class ExpenseEntry implements Serializable {
 
     @Override
     public String toString() {
-        return "applicationSubSystem.ExpenseEntry[ id=" + id + " ]";
+        return "applicationSubSystem.GrantLimit[ id=" + id + " ]";
     }
 
     /**
-     * @return the policy
+     * @return the requesterType
      */
-    public ExpensePolicy getPolicy() {
-        return policy;
+    public RequesterTypeEnum getRequesterType() {
+        return requesterType;
     }
 
     /**
-     * @param policy the policy to set
+     * @param requesterType the requesterType to set
      */
-    public void setPolicy(ExpensePolicy policy) {
-        this.policy = policy;
+    public void setRequesterType(RequesterTypeEnum requesterType) {
+        this.requesterType = requesterType;
     }
 
     /**
-     * @return the expenseAmount
+     * @return the maxGrant
      */
-    public int getExpenseAmount() {
-        return expenseAmount;
+    public int getMaxGrant() {
+        return maxGrant;
     }
 
     /**
-     * @param expenseAmount the expenseAmount to set
+     * @param maxGrant the maxGrant to set
      */
-    public void setExpenseAmount(int expenseAmount) {
-        this.expenseAmount = expenseAmount;
+    public void setMaxGrant(int maxGrant) {
+        this.maxGrant = maxGrant;
     }
     
 }

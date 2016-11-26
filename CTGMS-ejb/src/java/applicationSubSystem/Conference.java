@@ -30,7 +30,12 @@ public class Conference implements Serializable {
     public Long getId() {
         return id;
     }
-
+    public void setup(Date startDate, Date endDate, String name, String website){
+        this.startDate=startDate;
+        this.endDate=endDate;
+        this.name=name;
+        this.website=website;
+    }
     public void setId(Long id) {
         this.id = id;
     }

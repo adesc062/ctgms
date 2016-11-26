@@ -21,10 +21,16 @@ import javax.persistence.Table;
 public class ExpensePolicy implements Serializable {
 
     private int maxAmount;
+    private Enum expenseType;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public void setup(int maxAmount, Enum expenseType) {
+        this.maxAmount = maxAmount;
+        this.expenseType = expenseType;
+    }
 
     public Long getId() {
         return id;
@@ -71,6 +77,20 @@ public class ExpensePolicy implements Serializable {
      */
     public void setMaxAmount(int maxAmount) {
         this.maxAmount = maxAmount;
+    }
+
+    /**
+     * @return the expenseType
+     */
+    public Enum getExpenseType() {
+        return expenseType;
+    }
+
+    /**
+     * @param expenseType the expenseType to set
+     */
+    public void setExpenseType(Enum expenseType) {
+        this.expenseType = expenseType;
     }
     
 }

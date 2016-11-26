@@ -9,6 +9,8 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import applicationSubSystem.GrantApplication;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -21,21 +23,24 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     private EntityManager em;
 
     @Override
-    public void createApplication(String title, String description, String status, String conference) {
-    GrantApplication app= new GrantApplication(title, description,status,conference);
+    public void createApplication(String title, String description, String status, String conference) {}
+    /*GrantApplication app= new GrantApplication();
+    GrantApplication
+   app.setup(title, status, conference, 11, description,ApplicationStatusEnum );
+        
         try {
             em.persist(app);
         } catch (Exception e) {
             //return false ;
         }
        // return true;    
-    }
+    }*/
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
+/*
     public void persist(Object object) {
         em.persist(object);
-    }
+    }*/
     
 }

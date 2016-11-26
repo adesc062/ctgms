@@ -11,11 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import userSubsystem.Requester;
 
 /**
  *
- * @author user1
+ * @author ralle057
  */
+
+ 
+
 @Entity
 @Table(name="GrantApplications7972857")
 public class GrantApplication implements Serializable {
@@ -25,22 +29,26 @@ private String title;
  private Conference conference;
  private ExpenseEntry[] expenses;
  private String description;
+ private ApplicationStatusEnum applicationStatus;
+ private Requester requester;
 // private Expense 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue()
     private Long id;
 
- public GrantApplication(){
-     
- }
-    public GrantApplication(String title, String status, String conference, String description) {
-        
+    public void setup(String title, String status, Conference conference, ExpenseEntry[] expenses, String description, ApplicationStatusEnum applicationStatus, Requester requester) {
         this.title = title;
         this.status = status;
-        //this.conference = conference;
+        this.conference = conference;
+        this.expenses = expenses;
         this.description = description;
+        this.applicationStatus = applicationStatus;
+        this.requester= requester;
     }
+
+
+   
     
 
     public Long getId() {
@@ -132,6 +140,34 @@ private String title;
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the expenses
+     */
+    public ExpenseEntry[] getExpenses() {
+        return expenses;
+    }
+
+    /**
+     * @param expenses the expenses to set
+     */
+    public void setExpenses(ExpenseEntry[] expenses) {
+        this.expenses = expenses;
+    }
+
+    /**
+     * @return the applicationStatus
+     */
+    public ApplicationStatusEnum getApplicationStatus() {
+        return applicationStatus;
+    }
+
+    /**
+     * @param applicationStatus the applicationStatus to set
+     */
+    public void setApplicationStatus(ApplicationStatusEnum applicationStatus) {
+        this.applicationStatus = applicationStatus;
     }
     
 }
