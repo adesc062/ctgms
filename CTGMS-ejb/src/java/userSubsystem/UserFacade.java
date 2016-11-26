@@ -37,7 +37,7 @@ public class UserFacade implements UserFacadeLocal {
             Query query = em.createQuery(
                     "SELECT s FROM Supervisor s"
                     + " WHERE s.givenNames = :givenNames AND s.surname = :surname"
-                    + "LIMIT 1");
+                    + " LIMIT 1");
             query.setParameter("givenNames", givenNames);
             query.setParameter("surname", surname);
             List resultList = query.getResultList();
