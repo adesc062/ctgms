@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistence;
+package applicationSubSystem;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -18,8 +18,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Application7972857")
-public class Application implements Serializable {
+public class GrantAppplication implements Serializable {
 private String title;
+//ignoredType
  private String status;//should be enum/set value
  private String conference;
  private String description;
@@ -28,10 +29,10 @@ private String title;
     @GeneratedValue()
     private Long id;
 
- public Application(){
+ public GrantAppplication(){
      
  }
-    public Application(String title, String status, String conference, String description) {
+    public GrantAppplication(String title, String status, String conference, String description) {
         
         this.title = title;
         this.status = status;
@@ -58,10 +59,10 @@ private String title;
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Application)) {
+        if (!(object instanceof GrantAppplication)) {
             return false;
         }
-        Application other = (Application) object;
+        GrantAppplication other = (GrantAppplication) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

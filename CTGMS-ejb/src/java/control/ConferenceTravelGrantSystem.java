@@ -8,7 +8,7 @@ package control;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import persistence.Application;
+import applicationSubSystem.GrantAppplication;
 
 /**
  *
@@ -22,7 +22,7 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
 
     @Override
     public void createApplication(String title, String description, String status, String conference) {
-    Application app= new Application(title, description,status,conference);
+    GrantAppplication app= new GrantAppplication(title, description,status,conference);
         try {
             em.persist(app);
         } catch (Exception e) {
