@@ -15,9 +15,10 @@ import javax.ejb.Local;
 public interface UserFacadeLocal {
        
     public User login(String loginId, String unhashedPassword);
+    public Supervisor findSupervisorByName(String supervisorGivenNames, String supervisorSurname);
     public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword,
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
-            String bankAccountNumber, Requester.RequesterType requesterType);
+            String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname);
     public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword,
             String employeeNumber);
 }

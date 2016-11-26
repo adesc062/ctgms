@@ -19,9 +19,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Requesters7972857")
 public class Requester extends User implements Serializable {
-    
-    public enum RequesterType {
-        Masters, PhD, FastTrack
+
+    /**
+     * @return the supervisor
+     */
+    public Supervisor getSupervisor() {
+        return supervisor;
+    }
+
+    /**
+     * @param supervisor the supervisor to set
+     */
+    public void setSupervisor(Supervisor supervisor) {
+        this.supervisor = supervisor;
     } 
 
     private static final long serialVersionUID = 1L;
@@ -31,13 +41,14 @@ public class Requester extends User implements Serializable {
     private String sessionNumber;
     private String thesisTopic;
     private String bankAccountNumber;
-    private RequesterType requesterType;
+    private RequesterTypeEnum requesterType;
+    private Supervisor supervisor;
     
     public Requester() {}
     
     public Requester(String loginId, String surname, String givenNames, String email, byte[] hashedPassword, byte[] salt,
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
-            String bankAccountNumber, RequesterType requesterType) {        
+            String bankAccountNumber, RequesterTypeEnum requesterType, Supervisor supervisor) {        
         super(loginId, surname, givenNames, email, hashedPassword, salt);
         this.studentNumber = studentNumber;
         this.academicUnit = academicUnit;
@@ -46,6 +57,7 @@ public class Requester extends User implements Serializable {
         this.thesisTopic = thesisTopic;
         this.bankAccountNumber = bankAccountNumber;
         this.requesterType = requesterType;
+        this.supervisor = supervisor;
     }
     
     /**
@@ -135,14 +147,14 @@ public class Requester extends User implements Serializable {
     /**
      * @return the requesterType
      */
-    public RequesterType getRequesterType() {
+    public RequesterTypeEnum getRequesterType() {
         return requesterType;
     }
 
     /**
      * @param requesterType the requesterType to set
      */
-    public void setRequesterType(RequesterType requesterType) {
+    public void setRequesterType(RequesterTypeEnum requesterType) {
         this.requesterType = requesterType;
     }
 }
