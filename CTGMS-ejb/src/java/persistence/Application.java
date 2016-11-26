@@ -17,28 +17,28 @@ import javax.persistence.Table;
  * @author user1
  */
 @Entity
-@Table(name="Application7972857")
+@Table(name = "Application7972857")
 public class Application implements Serializable {
-private String title;
- private String status;//should be enum/set value
- private String conference;
- private String description;
+
+    private String title;
+    private String status;//should be enum/set value
+    private String conference;
+    private String description;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue()
     private Long id;
 
- public Application(){
-     
- }
+    public Application() {
+
+    }
+
     public Application(String title, String status, String conference, String description) {
-        
         this.title = title;
         this.status = status;
         this.conference = conference;
         this.description = description;
     }
-    
 
     public Long getId() {
         return id;
@@ -128,5 +128,4 @@ private String title;
     public void setDescription(String description) {
         this.description = description;
     }
-    
 }
