@@ -10,19 +10,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author adesc062
  */
 @Entity
+@Table(name="Supervisors7972857")
 public class Supervisor extends User implements Serializable {
     private static final long serialVersionUID = 1L;
     private String employeeNumber;
     
-    public Supervisor(String loginId, String surname, String givenNames, String email, byte[] password, byte[] salt,
+    public Supervisor() {}
+    
+    public Supervisor(String loginId, String surname, String givenNames, String email, byte[] hashedPassword, byte[] salt,
             String employeeNumber) {        
-        super(loginId, surname, givenNames, email, password, salt);
+        super(loginId, surname, givenNames, email, hashedPassword, salt);
         this.employeeNumber = employeeNumber;
     }
 
