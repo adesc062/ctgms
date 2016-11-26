@@ -88,7 +88,8 @@ public class UserFacade implements UserFacadeLocal {
             byte[] hashedPassword = digest.digest(saltedUnhashedPass.getBytes("UTF-8"));
             //Find supervisor
             Supervisor supervisor = findSupervisorByName(supervisorGivenNames, supervisorSurname);
-            Requester requester = new Requester(loginId, surname, givenNames, email, hashedPassword, salt, studentNumber, academicUnit,
+            Requester requester = new Requester();
+            requester.setup(loginId, surname, givenNames, email, hashedPassword, salt, studentNumber, academicUnit,
                     program, sessionNumber, thesisTopic, bankAccountNumber, requesterType, supervisor);
             //Persist user
             em.persist(requester);
@@ -111,7 +112,8 @@ public class UserFacade implements UserFacadeLocal {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             String saltedUnhashedPass = saltString + unhashedPassword;
             byte[] hashedPassword = digest.digest(saltedUnhashedPass.getBytes("UTF-8"));
-            Supervisor supervisor = new Supervisor(loginId, surname, givenNames, email, hashedPassword, salt, employeeNumber);
+            Supervisor supervisor = new Supervisor();
+            supervisor.setup(loginId, surname, givenNames, email, hashedPassword, salt, employeeNumber);
             //Persist user
             em.persist(supervisor);
             return true;

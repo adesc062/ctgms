@@ -46,10 +46,10 @@ public class Requester extends User implements Serializable {
     
     public Requester() {}
     
-    public Requester(String loginId, String surname, String givenNames, String email, byte[] hashedPassword, byte[] salt,
+    public void setup(String loginId, String surname, String givenNames, String email, byte[] hashedPassword, byte[] salt,
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
             String bankAccountNumber, RequesterTypeEnum requesterType, Supervisor supervisor) {        
-        super(loginId, surname, givenNames, email, hashedPassword, salt);
+        super.setup(loginId, surname, givenNames, email, hashedPassword, salt);
         this.studentNumber = studentNumber;
         this.academicUnit = academicUnit;
         this.program = program;

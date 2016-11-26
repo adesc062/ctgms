@@ -34,7 +34,7 @@ public class User implements Serializable {
     
     public User() {}
 
-    public User(String loginId, String surname, String givenNames, String email, byte[] hashedPassword, byte[] salt) {
+    public void setup(String loginId, String surname, String givenNames, String email, byte[] hashedPassword, byte[] salt) {
         this.loginId = loginId;
         this.surname = surname;
         this.givenNames = givenNames;

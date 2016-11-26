@@ -24,9 +24,9 @@ public class Supervisor extends User implements Serializable {
     
     public Supervisor() {}
     
-    public Supervisor(String loginId, String surname, String givenNames, String email, byte[] hashedPassword, byte[] salt,
+    public void setup(String loginId, String surname, String givenNames, String email, byte[] hashedPassword, byte[] salt,
             String employeeNumber) {        
-        super(loginId, surname, givenNames, email, hashedPassword, salt);
+        super.setup(loginId, surname, givenNames, email, hashedPassword, salt);
         this.employeeNumber = employeeNumber;
     }
 
