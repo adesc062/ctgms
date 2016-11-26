@@ -17,26 +17,28 @@ import javax.persistence.Table;
  * @author user1
  */
 @Entity
-@Table(name="Application7972857")
-public class GrantAppplication implements Serializable {
+@Table(name="GrantApplications7972857")
+public class GrantApplication implements Serializable {
 private String title;
 //ignoredType
  private String status;//should be enum/set value
- private String conference;
+ private Conference conference;
+ private ExpenseEntry[] expenses;
  private String description;
+// private Expense 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue()
     private Long id;
 
- public GrantAppplication(){
+ public GrantApplication(){
      
  }
-    public GrantAppplication(String title, String status, String conference, String description) {
+    public GrantApplication(String title, String status, String conference, String description) {
         
         this.title = title;
         this.status = status;
-        this.conference = conference;
+        //this.conference = conference;
         this.description = description;
     }
     
@@ -61,10 +63,10 @@ private String title;
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof GrantAppplication)) {
+        if (!(object instanceof GrantApplication)) {
             return false;
         }
-        GrantAppplication other = (GrantAppplication) object;
+        GrantApplication other = (GrantApplication) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -107,14 +109,14 @@ private String title;
     /**
      * @return the conference
      */
-    public String getConference() {
+    public Conference getConference() {
         return conference;
     }
 
     /**
      * @param conference the conference to set
      */
-    public void setConference(String conference) {
+    public void setConference(Conference conference) {
         this.conference = conference;
     }
 
