@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistence;
+package applicationSubSystem;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -17,31 +17,36 @@ import javax.persistence.Table;
  * @author user1
  */
 @Entity
-@Table(name = "Application7972857")
-public class Application implements Serializable {
-
-    private String title;
-    private String status;//should be enum/set value
-    private String conference;
-    private String description;
+@Table(name="GrantApplications7972857")
+public class GrantApplication implements Serializable {
+private String title;
+//ignoredType
+ private String status;//should be enum/set value
+ private Conference conference;
+ private ExpenseEntry[] expenses;
+ private String description;
+// private Expense 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue()
     private Long id;
 
-    public Application() {
-
-    }
-
-    public Application(String title, String status, String conference, String description) {
+ public GrantApplication(){
+     
+ }
+    public GrantApplication(String title, String status, String conference, String description) {
+        
         this.title = title;
         this.status = status;
-        this.conference = conference;
+        //this.conference = conference;
         this.description = description;
     }
+    
 
     public Long getId() {
+           //"TEST";
         return id;
+     
     }
 
     public void setId(Long id) {
@@ -58,10 +63,10 @@ public class Application implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Application)) {
+        if (!(object instanceof GrantApplication)) {
             return false;
         }
-        Application other = (Application) object;
+        GrantApplication other = (GrantApplication) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -104,14 +109,14 @@ public class Application implements Serializable {
     /**
      * @return the conference
      */
-    public String getConference() {
+    public Conference getConference() {
         return conference;
     }
 
     /**
      * @param conference the conference to set
      */
-    public void setConference(String conference) {
+    public void setConference(Conference conference) {
         this.conference = conference;
     }
 
@@ -128,4 +133,5 @@ public class Application implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+    
 }

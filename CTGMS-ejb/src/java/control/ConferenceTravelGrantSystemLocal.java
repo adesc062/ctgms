@@ -6,7 +6,7 @@
 package control;
 
 import javax.ejb.Local;
-import persistence.Application;
+import applicationSubSystem.GrantApplication;
 
 /**
  *

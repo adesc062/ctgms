@@ -5,3 +5,5 @@
 /dist/
 /CTGMS-ejb/dist/
 /CTGMS-war/dist/
+/build/
+/CTGMS-war/build/
