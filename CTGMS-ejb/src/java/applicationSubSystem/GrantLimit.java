@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import userSubsystem.RequesterTypeEnum;
 
 /**
@@ -17,6 +18,7 @@ import userSubsystem.RequesterTypeEnum;
  * @author user1
  */
 @Entity
+@Table(name="Grants7972857")
 public class GrantLimit implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -86,5 +88,7 @@ public class GrantLimit implements Serializable {
     public void setMaxGrant(int maxGrant) {
         this.maxGrant = maxGrant;
     }
+    
+  
     
 }

@@ -11,12 +11,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author user1
  */
 @Entity
+@Table(name="Conferences7972857")
 public class Conference implements Serializable {
     private Date startDate;
     private Date endDate;
@@ -30,7 +32,15 @@ public class Conference implements Serializable {
     public Long getId() {
         return id;
     }
-    public void setup(Date startDate, Date endDate, String name, String website){
+
+    public Conference(){
+        //default constuctor, required by jpu
+    }
+    public Conference(Date startDate, Date endDate, String name, String website) {
+        this.setup(startDate, endDate, name, website);
+    }
+    
+    private void setup(Date startDate, Date endDate, String name, String website){
         this.startDate=startDate;
         this.endDate=endDate;
         this.name=name;

@@ -6,6 +6,7 @@
 package applicationSubSystem;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,25 +29,40 @@ public class GrantApplication implements Serializable {
 private String title;
 //ignoredType
  private Conference conference;
- private ExpenseEntry[] expenses;
+ private LinkedList<ExpenseEntry> expenses;
  private String description;
+ private int total;
  
  @Enumerated(EnumType.ORDINAL)
  private ApplicationStatusEnum applicationStatus;
  private Requester requester;
+ private SupervisorRecommendation supervisorRecommendation;
 // private Expense 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue()
     private Long id;
 
-    public void setup(String title, Conference conference, ExpenseEntry[] expenses, String description, ApplicationStatusEnum applicationStatus, Requester requester) {
+    public GrantApplication(){
+        //for jpu
+    }
+    
+    public GrantApplication(String title, Conference conference, String description, Requester requester) {
+        this.setup(title, conference, description,requester);
+    }
+    
+    
+
+    public void setup(String title, Conference conference, String description, Requester requester) {
         this.title = title;
         this.conference = conference;
-        this.expenses = expenses;
+       // this.expenses = expenses; //this will be done through setter. See sequence diagram
         this.description = description;
-        this.applicationStatus = applicationStatus;
-        this.requester= requester;
+        this.setRequester(requester);
+        this.applicationStatus = applicationStatus.INCOMPLETE;
+        //this.requester= requester;done later in sequence
+        this.setExpenses(new LinkedList<ExpenseEntry>());
+        this.setTotal(0);
     }
 
     public Long getId() {
@@ -130,16 +146,7 @@ private String title;
     /**
      * @return the expenses
      */
-    public ExpenseEntry[] getExpenses() {
-        return expenses;
-    }
-
-    /**
-     * @param expenses the expenses to set
-     */
-    public void setExpenses(ExpenseEntry[] expenses) {
-        this.expenses = expenses;
-    }
+    
 
     /**
      * @return the applicationStatus
@@ -151,8 +158,60 @@ private String title;
     /**
      * @param applicationStatus the applicationStatus to set
      */
-    public void setApplicationStatus(ApplicationStatusEnum applicationStatus) {
+    public void setStatus(ApplicationStatusEnum applicationStatus) {
         this.applicationStatus = applicationStatus;
+    }
+    
+    //used Dependancy injection
+    public void addToTotal(ExpenseEntry expenseEntry){
+        getExpenses().add(expenseEntry);
+        this.setTotal(this.getTotal() + expenseEntry.getExpenseAmount());
+    }
+
+    /**
+     * @return the expenses
+     */
+    public LinkedList<ExpenseEntry> getExpenses() {
+        return expenses;
+    }
+
+    /**
+     * @param expenses the expenses to set
+     */
+    public void setExpenses(LinkedList<ExpenseEntry> expenses) {
+        this.expenses = expenses;
+    }
+
+    /**
+     * @return the total
+     */
+    public int getTotal() {
+        return total;
+    }
+
+    /**
+     * @param total the total to set
+     */
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    /**
+     * @return the requester
+     */
+    public Requester getRequester() {
+        return requester;
+    }
+
+    /**
+     * @param requester the requester to set
+     */
+    public void setRequester(Requester requester) {
+        this.requester = requester;
+    }
+    
+    public void addSupervisorRecommendation(SupervisorRecommendation superRec){
+        this.supervisorRecommendation=superRec;
     }
     
 }

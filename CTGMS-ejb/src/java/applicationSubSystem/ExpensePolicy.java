@@ -29,7 +29,17 @@ public class ExpensePolicy implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    public ExpensePolicy(){
+        //for jpu
+    }
 
+    public ExpensePolicy(int maxAmount, ExpenseTypeEnum expenseType) {
+        this.setup( maxAmount, expenseType);
+    }
+
+    
+    
     public void setup(int maxAmount, ExpenseTypeEnum expenseType) {
         this.maxAmount = maxAmount;
         this.expenseType = expenseType;
