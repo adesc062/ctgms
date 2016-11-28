@@ -37,7 +37,7 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
     public Conference findConference(String name) {
         try {
             Query query = em.createQuery(
-                    "SELECT c FROM Conferences7972857 c"
+                    "SELECT c FROM Conference c"
                     + " WHERE c.name = :name");
             query.setParameter("name", name);
             List resultList = query.getResultList();
@@ -65,7 +65,7 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
     public ExpensePolicy findPolicy(ExpenseTypeEnum expenseType) {
         try {
             Query query = em.createQuery(
-                    "SELECT eP FROM ExpensePolicies7972857 eP"
+                    "SELECT eP FROM ExpensePolicy eP"
                     + " WHERE eP.expenseType = :expenseType");
             query.setParameter("expenseType", expenseType);
             List resultList = query.getResultList();
@@ -95,7 +95,7 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
      public GrantLimit findGrantLimit(RequesterTypeEnum requesterType){
          try {
             Query query = em.createQuery(
-                    "SELECT gL FROM GrantLimits7972857 gL"
+                    "SELECT gL FROM GrantLimit gL"
                     + " WHERE gL.requesterType = :requesterType");
             query.setParameter("requesterType", requesterType);
             List resultList = query.getResultList();
