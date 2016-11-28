@@ -20,7 +20,7 @@ public interface ApplicationFacadeLocal {
     public Conference createConference(Date startDate, Date endDate, String name, String website);
     public ExpenseEntry createEntry(ExpensePolicy expensePolicy, int amount);
     public ExpensePolicy findPolicy();
-    public GrantApplication createGrantApplication(String title, String status, Conference conference, ExpenseEntry[] expenses, String description, Requester requester);
+    public GrantApplication createGrantApplication(String title, Conference conference, ExpenseEntry[] expenses, String description, Requester requester);
     public int getTotal(GrantApplication grantApplication);
     public SupervisorRecommendation createSupervisorRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application);
 }

@@ -7,6 +7,8 @@ package applicationSubSystem;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,10 +27,11 @@ import userSubsystem.Requester;
 public class GrantApplication implements Serializable {
 private String title;
 //ignoredType
- private String status;//should be enum/set value
  private Conference conference;
  private ExpenseEntry[] expenses;
  private String description;
+ 
+ @Enumerated(EnumType.ORDINAL)
  private ApplicationStatusEnum applicationStatus;
  private Requester requester;
 // private Expense 
@@ -37,9 +40,8 @@ private String title;
     @GeneratedValue()
     private Long id;
 
-    public void setup(String title, String status, Conference conference, ExpenseEntry[] expenses, String description, ApplicationStatusEnum applicationStatus, Requester requester) {
+    public void setup(String title, Conference conference, ExpenseEntry[] expenses, String description, ApplicationStatusEnum applicationStatus, Requester requester) {
         this.title = title;
-        this.status = status;
         this.conference = conference;
         this.expenses = expenses;
         this.description = description;
@@ -100,20 +102,7 @@ private String title;
         this.title = title;
     }
 
-    /**
-     * @return the status
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
+   
     /**
      * @return the conference
      */

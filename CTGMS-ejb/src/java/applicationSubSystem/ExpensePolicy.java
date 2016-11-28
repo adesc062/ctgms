@@ -7,6 +7,8 @@ package applicationSubSystem;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,13 +23,14 @@ import javax.persistence.Table;
 public class ExpensePolicy implements Serializable {
 
     private int maxAmount;
-    private Enum expenseType;
+     @Enumerated(EnumType.ORDINAL)
+    private ExpenseTypeEnum expenseType;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public void setup(int maxAmount, Enum expenseType) {
+    public void setup(int maxAmount, ExpenseTypeEnum expenseType) {
         this.maxAmount = maxAmount;
         this.expenseType = expenseType;
     }
@@ -89,7 +92,7 @@ public class ExpensePolicy implements Serializable {
     /**
      * @param expenseType the expenseType to set
      */
-    public void setExpenseType(Enum expenseType) {
+    public void setExpenseType(ExpenseTypeEnum expenseType) {
         this.expenseType = expenseType;
     }
     

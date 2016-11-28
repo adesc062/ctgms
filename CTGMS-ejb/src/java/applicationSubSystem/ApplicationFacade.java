@@ -38,7 +38,7 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
     }
 
     @Override
-    public GrantApplication createGrantApplication(String title, String status, Conference conference, ExpenseEntry[] expenses, String description, Requester requester) {
+    public GrantApplication createGrantApplication(String title, Conference conference, ExpenseEntry[] expenses, String description, Requester requester) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
