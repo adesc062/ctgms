@@ -25,7 +25,7 @@ import userSubsystem.Requester;
 public class GrantApplication implements Serializable {
 private String title;
 //ignoredType
- private String status;//should be enum/set value
+ private String status; //should be enum/set value
  private Conference conference;
  private ExpenseEntry[] expenses;
  private String description;

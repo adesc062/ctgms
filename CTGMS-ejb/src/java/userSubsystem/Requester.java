@@ -7,6 +7,8 @@ package userSubsystem;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,6 +43,7 @@ public class Requester extends User implements Serializable {
     private String sessionNumber;
     private String thesisTopic;
     private String bankAccountNumber;
+    @Enumerated(EnumType.ORDINAL)
     private RequesterTypeEnum requesterType;
     private Supervisor supervisor;
     
