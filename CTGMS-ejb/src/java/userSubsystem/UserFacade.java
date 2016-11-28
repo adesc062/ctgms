@@ -35,7 +35,7 @@ public class UserFacade implements UserFacadeLocal {
     public Supervisor findSupervisorByName(String givenNames, String surname) {
         try {
             Query query = em.createQuery(
-                    "SELECT s FROM Supervisor s"
+                    "SELECT s FROM Supervisors7972857 s"
                     + " WHERE s.givenNames = :givenNames AND s.surname = :surname"
                     + " LIMIT 1");
             query.setParameter("givenNames", givenNames);
@@ -88,8 +88,7 @@ public class UserFacade implements UserFacadeLocal {
             byte[] hashedPassword = digest.digest(saltedUnhashedPass.getBytes("UTF-8"));
             //Find supervisor
             Supervisor supervisor = findSupervisorByName(supervisorGivenNames, supervisorSurname);
-            Requester requester = new Requester();
-            requester.setup(loginId, surname, givenNames, email, hashedPassword, salt, studentNumber, academicUnit,
+            Requester requester = new Requester(loginId, hashedPassword, salt, givenNames, surname, email, studentNumber, academicUnit,
                     program, sessionNumber, thesisTopic, bankAccountNumber, requesterType, supervisor);
             //Persist user
             em.persist(requester);

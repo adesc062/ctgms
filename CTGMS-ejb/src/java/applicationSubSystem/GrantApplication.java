@@ -65,10 +65,6 @@ private String title;
         this.setTotal(0);
     }
 
-
-   
-    
-
     public Long getId() {
            //"TEST";
         return id;
