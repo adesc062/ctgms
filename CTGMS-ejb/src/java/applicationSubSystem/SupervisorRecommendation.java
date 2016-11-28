@@ -31,6 +31,7 @@ private String requestedChanges;
 private Supervisor supervisor;
 private GrantApplication application;
 
+
 public void setup(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application) {
         this.isApproved = isApproved;
         this.isSigned = isSigned;
@@ -38,7 +39,9 @@ public void setup(boolean isApproved, boolean isSigned, String requestedChanges,
         this.supervisor = supervisor;
         this.application = application;
     }
-    
+    public SupervisorRecommendation(){
+        
+    }
 
 
     public SupervisorRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor) {

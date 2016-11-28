@@ -9,6 +9,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import static java.time.Clock.system;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -35,12 +37,15 @@ public class UserFacade implements UserFacadeLocal {
     public byte[] findSalt(String loginId) {
         try {
             Query query = em.createQuery(
-                    "SELECT * FROM Users7972857 s"
-                    + " WHERE s.loginId = '':loginId''");
+                    "SELECT s FROM User s"
+                    + " WHERE s.loginId = :loginId");
             query.setParameter("loginId", loginId);
             List resultList = query.getResultList();
-            User user = (User) resultList.get(0);
-            System.out.println(Arrays.toString(user.getSalt()));
+            ArrayList<User> users = new ArrayList<User>();
+                    users.addAll(resultList);
+            User user= users.get(0);
+            System.out.println("POW");
+            System.out.println(user.getSalt());
             return user.getSalt();
         } catch (Exception e) {
             System.out.println(e);
