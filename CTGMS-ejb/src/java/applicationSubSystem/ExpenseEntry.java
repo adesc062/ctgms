@@ -21,15 +21,27 @@ import javax.persistence.Table;
 public class ExpenseEntry implements Serializable {
 
     private ExpensePolicy policy;
+    private GrantApplication grantApp;
     private int expenseAmount;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public void setup(ExpensePolicy policy, int expenseAmount) {
+    public ExpenseEntry(){
+        //empty for jpu
+    }
+    
+    public ExpenseEntry(ExpensePolicy policy, GrantApplication grantApp, int expenseAmount) {
+        this.setup(policy,expenseAmount, grantApp);
+        grantApp.addToTotal(this);  
+    }
+
+    
+    public void setup(ExpensePolicy policy, int expenseAmount, GrantApplication grantApp) {
         this.policy = policy;
         this.expenseAmount = expenseAmount;
+        this.grantApp=grantApp;
     }
 
     public Long getId() {

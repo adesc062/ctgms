@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import userSubsystem.Supervisor;
 
 /**
@@ -17,12 +18,18 @@ import userSubsystem.Supervisor;
  * @author user1
  */
 @Entity
+@Table(name="SupervisorRecommendations7972857")
 public class SupervisorRecommendation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private boolean isApproved;
+private boolean isSigned;
+private String requestedChanges;
+private Supervisor supervisor;
+private GrantApplication application;
 
     public void setup(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application) {
         this.isApproved = isApproved;
@@ -32,11 +39,19 @@ public class SupervisorRecommendation implements Serializable {
         this.application = application;
     }
     
-private boolean isApproved;
-private boolean isSigned;
-private String requestedChanges;
-private Supervisor supervisor;
-private GrantApplication application;
+
+
+    public SupervisorRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor) {
+        this.setup(isApproved,isSigned,requestedChanges,supervisor);
+    }
+    
+    public void setup(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor){
+        this.isApproved = isApproved;
+        this.isSigned = isSigned;
+        this.requestedChanges = requestedChanges;
+        this.supervisor = supervisor;
+    }
+
     public Long getId() {
         return id;
     }
