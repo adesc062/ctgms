@@ -9,6 +9,6 @@ package applicationSubSystem;
  *
  * @author user1
  */
-public enum ApplicationStatusEnum{
+public enum ApplicationStatusEnum {
     INCOMPLETE, PENDING_SUPERVISOR_APPROVAL, PENDING_FACULTY_APPROVAL, REFUSED
 }

@@ -11,6 +11,8 @@ import javax.persistence.PersistenceContext;
 import applicationSubSystem.GrantApplication;
 import java.util.HashSet;
 import java.util.Set;
+import userSubsystem.RequesterTypeEnum;
+import userSubsystem.User;
 
 /**
  *
@@ -23,24 +25,23 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     private EntityManager em;
 
     @Override
-    public void createApplication(String title, String description, String status, String conference) {}
-    /*GrantApplication app= new GrantApplication();
-    GrantApplication
-   app.setup(title, status, conference, 11, description,ApplicationStatusEnum );
-        
-        try {
-            em.persist(app);
-        } catch (Exception e) {
-            //return false ;
-        }
-       // return true;    
-    }*/
+    public User findUser(String username, String unhashedPassword) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-/*
-    public void persist(Object object) {
-        em.persist(object);
-    }*/
-    
+    @Override
+    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword, String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic, String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword, String employeeNumber) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void createApplication(String title, String description, String status, String conference) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
