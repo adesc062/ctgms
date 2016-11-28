@@ -8,6 +8,7 @@ package control;
 import javax.ejb.Local;
 import applicationSubSystem.GrantApplication;
 import userSubsystem.RequesterTypeEnum;
+import userSubsystem.Supervisor;
 import userSubsystem.User;
 
 /**
@@ -23,5 +24,6 @@ public interface ConferenceTravelGrantSystemLocal {
             String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname);
     public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword,
             String employeeNumber);
-    public void createApplication(String title, String description, String status, String conference);
+    public boolean createApplication(String title, String description, String status, String conference);
+    public boolean makeRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application);
 }

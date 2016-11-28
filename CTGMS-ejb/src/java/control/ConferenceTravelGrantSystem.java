@@ -12,6 +12,7 @@ import applicationSubSystem.GrantApplication;
 import java.util.HashSet;
 import java.util.Set;
 import userSubsystem.RequesterTypeEnum;
+import userSubsystem.Supervisor;
 import userSubsystem.User;
 
 /**
@@ -23,6 +24,8 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
 
     @PersistenceContext(unitName = "CTGMS-ejbPU")
     private EntityManager em;
+    
+    User user;
 
     @Override
     public User findUser(String username, String unhashedPassword) {
@@ -40,7 +43,12 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     }
 
     @Override
-    public void createApplication(String title, String description, String status, String conference) {
+    public boolean createApplication(String title, String description, String status, String conference) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean makeRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

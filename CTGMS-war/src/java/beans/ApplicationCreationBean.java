@@ -11,33 +11,39 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import userSubsystem.RequesterTypeEnum;
 
 /**
  *
  * @author user1
  */
-@Named(value = "createApplication")
+@Named(value = "applicationCreationBean")
 @RequestScoped
-public class CreateApplication {
+public class ApplicationCreationBean {
 
     @EJB
     private ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem;
- private String title;
- private String status;//should be enum/set value
- private String conference;
- private String description;
-         
+    private String title;
+    private String status;//should be enum/set value
+    private String conference;
+    private String description;
+    private double registrationAmount;
+    private double transportationAmount;
+    private double accomodationAmount;
+    private double mealsAmount;
+    
     /**
      * Creates a new instance of CreateApplication
      */
-    public CreateApplication() {
+    public ApplicationCreationBean() {
     }
 
     /**
      * @return the title
      */
     public String getTitle() {
-        return "test";
+        return title;
     }
 
     /**
@@ -88,9 +94,67 @@ public class CreateApplication {
     public void setDescription(String description) {
         this.description = description;
     }
-    public void process(){
+
+    public void submit() {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         this.conferenceTravelGrantSystem.createApplication(this.title, this.description, this.status, this.conference);
     }
+    
+    /**
+     * @return the registrationAmount
+     */
+    public double getRegistrationAmount() {
+        return registrationAmount;
+    }
+
+    /**
+     * @param registrationAmount the registrationAmount to set
+     */
+    public void setRegistrationAmount(double registrationAmount) {
+        this.registrationAmount = registrationAmount;
+    }
+
+    /**
+     * @return the transportationAmount
+     */
+    public double getTransportationAmount() {
+        return transportationAmount;
+    }
+
+    /**
+     * @param transportationAmount the transportationAmount to set
+     */
+    public void setTransportationAmount(double transportationAmount) {
+        this.transportationAmount = transportationAmount;
+    }
+
+    /**
+     * @return the accomodationAmount
+     */
+    public double getAccomodationAmount() {
+        return accomodationAmount;
+    }
+
+    /**
+     * @param accomodationAmount the accomodationAmount to set
+     */
+    public void setAccomodationAmount(double accomodationAmount) {
+        this.accomodationAmount = accomodationAmount;
+    }
+
+    /**
+     * @return the mealsAmount
+     */
+    public double getMealsAmount() {
+        return mealsAmount;
+    }
+
+    /**
+     * @param mealsAmount the mealsAmount to set
+     */
+    public void setMealsAmount(double mealsAmount) {
+        this.mealsAmount = mealsAmount;
+    }
+
 }

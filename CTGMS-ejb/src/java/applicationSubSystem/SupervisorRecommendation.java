@@ -24,7 +24,7 @@ public class SupervisorRecommendation implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public void setup(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application) {
+public void setup(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application) {
         this.isApproved = isApproved;
         this.isSigned = isSigned;
         this.requestedChanges = requestedChanges;

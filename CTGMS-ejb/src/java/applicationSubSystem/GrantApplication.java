@@ -49,10 +49,6 @@ private String title;
         this.requester= requester;
     }
 
-
-   
-    
-
     public Long getId() {
            //"TEST";
         return id;

@@ -1,26 +1,44 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Create Application</title>
     </h:head>
     <h:body>
+        <h3>Create Application</h3>
         <h:form>
-            <h:outputText value="Title"></h:outputText>
-            <h:inputText id="titleIn" value="#{createApplication.title}"> </h:inputText>
+            <h:outputText value="Application Title"></h:outputText>
+            <h:inputText id="titleIn" value="#{applicationCreationBean.title}"></h:inputText>
+            <br/>
+            <h:outputText value="Conference"></h:outputText>
+            <h:inputText id="conferenceIn" value="#{applicationCreationBean.conference}"></h:inputText>
             <br/>
             <h:outputText value="Status"></h:outputText>
-            <h:inputText id="statusIn" value="#{createApplication.status}"> </h:inputText>
-           <br/>
-            <h:outputText value="Conference"></h:outputText>
-            <h:inputText id="confIn" value="#{createApplication.conference}"> </h:inputText>
+            <h:inputText id="statusIn" value="#{applicationCreationBean.status}"></h:inputText>
             <br/>
             <h:outputText value="Description"></h:outputText>
-            <h:inputText id="descIn" value="#{createApplication.description}"> </h:inputText>
-          <br/>
-          <h:commandButton value="process" type="command"  
-                                            actionListener="#{createApplication.process()}"/>
+            <h:inputText id="descriptionIn" value="#{applicationCreationBean.description}"></h:inputText>
+            <br/>
+            <br/>
+            <h:outputText value="Expense Report"></h:outputText> 
+            <hr/>
+            <h:outputText value="Registration Expense Amount"></h:outputText>
+            <h:inputText id="registrationExpenseAmountIn" value="#{applicationCreationBean.registrationAmount}"></h:inputText>
+            <br/>
+            <h:outputText value="Transportation Expense Amount"></h:outputText>
+            <h:inputText id="transportationExpenseAmountIn" value="#{applicationCreationBean.transportationAmount}"></h:inputText>
+            <br/>
+            <h:outputText value="Accomodation Expense Amount"></h:outputText>
+            <h:inputText id="accomodationExpenseAmountIn" value="#{applicationCreationBean.accomodationAmount}"></h:inputText>
+            <br/>
+            <h:outputText value="Meals Expense Amount"></h:outputText>
+            <h:inputText id="mealsExpenseAmountIn" value="#{applicationCreationBean.mealsAmount}"></h:inputText>
+            <br/>
+            <br/>
+            <h:commandButton value="Submit" type="command" actionListener="#{applicationCreationBean.submit()}"/>
         </h:form>
     </h:body>
 </html>
