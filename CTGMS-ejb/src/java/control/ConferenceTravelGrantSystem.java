@@ -11,9 +11,11 @@ import javax.persistence.PersistenceContext;
 import applicationSubSystem.GrantApplication;
 import java.util.HashSet;
 import java.util.Set;
+import javax.ejb.EJB;
 import userSubsystem.RequesterTypeEnum;
 import userSubsystem.Supervisor;
 import userSubsystem.User;
+import userSubsystem.UserFacadeLocal;
 
 /**
  *
@@ -22,14 +24,19 @@ import userSubsystem.User;
 @Stateful
 public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemLocal {
 
+    @EJB
+    private UserFacadeLocal userFacade;
+
     @PersistenceContext(unitName = "CTGMS-ejbPU")
     private EntityManager em;
+    
+    
     
     User user;
 
     @Override
     public User findUser(String username, String unhashedPassword) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userFacade.findUser(username, unhashedPassword);
     }
 
     @Override
@@ -38,8 +45,8 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     }
 
     @Override
-    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword, String employeeNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, String employeeNumber) {
+        return userFacade.addUser(loginId, unhashedPassword, givenNames, surname, email, employeeNumber);
     }
 
     @Override
@@ -50,6 +57,10 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     @Override
     public boolean makeRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void persist(Object object) {
+        em.persist(object);
     }
 
 }

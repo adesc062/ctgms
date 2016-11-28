@@ -22,8 +22,7 @@ public interface ConferenceTravelGrantSystemLocal {
     public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword,
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
             String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname);
-    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword,
-            String employeeNumber);
+    public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, String employeeNumber);
     public boolean createApplication(String title, String description, String status, String conference);
     public boolean makeRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application);
 }

@@ -38,6 +38,7 @@ public class SignInBean {
         //FacesContext context = FacesContext.getCurrentInstance();
         //ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         //this.conferenceTravelGrantSystem.createApplication(this.title, this.description, this.status, this.conference);
+        conferenceTravelGrantSystem.findUser(loginId, password);
     }
     
     public String createRequesterAccount() {
@@ -45,7 +46,7 @@ public class SignInBean {
     }
     
     public String createSupervisorAccount() {
-        return "ApplicationCreationScreen";
+        return "RegisterSupervisorScreen";
     }
     
     /**

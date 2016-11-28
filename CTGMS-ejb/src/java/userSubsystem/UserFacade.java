@@ -32,6 +32,29 @@ public class UserFacade implements UserFacadeLocal {
     private EntityManager em;
 
     @Override
+    public byte[] findSalt(String loginId) {
+        try {
+            Query query = em.createQuery(
+                    "SELECT * FROM Users7972857 s"
+                    + " WHERE s.loginId = '':loginId''");
+            query.setParameter("loginId", loginId);
+            List resultList = query.getResultList();
+            User user = (User) resultList.get(0);
+            System.out.println(Arrays.toString(user.getSalt()));
+            return user.getSalt();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    @Override
+    public User findUser(String loginId, String unhashedPassword) {
+        findSalt(loginId);
+        return new User();
+    }
+    
+    @Override
     public Supervisor findSupervisorByName(String givenNames, String surname) {
         try {
             Query query = em.createQuery(
@@ -100,23 +123,20 @@ public class UserFacade implements UserFacadeLocal {
     }
 
     @Override
-    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword, String employeeNumber) {
+    public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, String employeeNumber) {
         try {
             //Randomly generate salt value
             final Random r = new SecureRandom();
             byte[] salt = new byte[32];
             r.nextBytes(salt);
             String saltString = new String(salt, "UTF-8");
-            //Hash password using SHA-256 algorithm
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            String saltedUnhashedPass = saltString + unhashedPassword;
-            byte[] hashedPassword = digest.digest(saltedUnhashedPass.getBytes("UTF-8"));
+            byte[] hashedPassword = this.hashPassword(unhashedPassword, saltString);
             Supervisor supervisor = new Supervisor();
             supervisor.setup(loginId, surname, givenNames, email, hashedPassword, salt, employeeNumber);
             //Persist user
             em.persist(supervisor);
             return true;
-        } catch (UnsupportedEncodingException | NoSuchAlgorithmException | RuntimeException ex) {
+        } catch (UnsupportedEncodingException | RuntimeException ex) {
             Logger.getLogger(UserFacade.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
@@ -124,6 +144,18 @@ public class UserFacade implements UserFacadeLocal {
 
     public void persist(Object object) {
         em.persist(object);
+    }
+
+    private byte[] hashPassword(String unhashedPassword, String salt) {
+        try {
+            //Hash password using SHA-256 algorithm
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            String saltedUnhashedPass = salt + unhashedPassword;
+            return digest.digest(saltedUnhashedPass.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException | RuntimeException ex) {
+            Logger.getLogger(UserFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
 }

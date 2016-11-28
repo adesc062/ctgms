@@ -56,7 +56,7 @@ public class Requester extends User implements Serializable {
                 thesisTopic, bankAccountNumber, requesterType, supervisor);
     }
     
-    public void setup(String loginId, byte[] hashedPassword, byte[] salt, String givenNames, String surname, String email, String studentNumber,
+    private void setup(String loginId, byte[] hashedPassword, byte[] salt, String givenNames, String surname, String email, String studentNumber,
             String academicUnit, String program, String sessionNumber, String thesisTopic, String bankAccountNumber,
             RequesterTypeEnum requesterType, Supervisor supervisor) {        
         super.setup(loginId, surname, givenNames, email, hashedPassword, salt);
