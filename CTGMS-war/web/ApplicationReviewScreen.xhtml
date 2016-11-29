@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Review Application</title>
+    </h:head>
+    <h:body>
+        <h3>Review Application</h3>
+        <h:form>
+            <h:outputText value="Application Title"></h:outputText>
+            <h:outputText value="#{applicationReviewBean.title}"></h:outputText>
+            <br/>
+            <h:outputText value="Conference"></h:outputText>
+            <h:outputText value="#{applicationReviewBean.conference}"></h:outputText>
+            <br/>
+            <h:outputText value="Status"></h:outputText>
+            <h:outputText value="#{applicationReviewBean.status}"></h:outputText>
+            <br/>
+            <h:outputText value="Description"></h:outputText>
+            <h:outputText value="#{applicationReviewBean.description}"></h:outputText>
+            <br/>
+            <br/>
+            <h:outputText value="Expense Report"></h:outputText> 
+            <hr/>
+            <h:outputText value="Registration Expense Amount"></h:outputText>
+            <h:outputText value="#{applicationReviewBean.registrationAmount}"></h:outputText>
+            <br/>
+            <h:outputText value="Transportation Expense Amount"></h:outputText>
+            <h:outputText value="#{applicationReviewBean.transportationAmount}"></h:outputText>
+            <br/>
+            <h:outputText value="Accomodation Expense Amount"></h:outputText>
+            <h:outputText value="#{applicationReviewBean.accomodationAmount}"></h:outputText>
+            <br/>
+            <h:outputText value="Meals Expense Amount"></h:outputText>
+            <h:outputText value="#{applicationReviewBean.mealsAmount}"></h:outputText>
+            <br/>
+            <br/>
+            <h:outputText value="Comments: "></h:outputText>
+            <h:inputTextarea rows="10" value="#{applicationReviewBean.comments}"></h:inputTextarea>
+            <br/>
+            <h:commandButton value="Submit" type="command" actionListener="#{applicationReviewBean.accept()}"/>
+            <br/>
+            <h:commandButton value="Submit" type="command" actionListener="#{applicationReviewBean.markIncomplete()}"/>
+            <br/>
+            <h:commandButton value="Submit" type="command" actionListener="#{applicationReviewBean.reject()}"/>
+        </h:form>
+    </h:body>
+</html>
+
