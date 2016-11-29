@@ -51,11 +51,42 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
         return applicationFacade.getListOfGrantApplicationsNeedingSupervisorApproval((Supervisor)user);
     }
 
+    /**
+     * The method used for adding a REQUESTER
+     * @param loginId
+     * @param surname
+     * @param givenNames
+     * @param email
+     * @param unhashedPassword
+     * @param studentNumber
+     * @param academicUnit
+     * @param program
+     * @param sessionNumber
+     * @param thesisTopic
+     * @param bankAccountNumber
+     * @param requesterType
+     * @param supervisorGivenNames
+     * @param supervisorSurname
+     * @return 
+     */
     @Override
-    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword, String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic, String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, 
+            String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
+            String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname) {
+       return userFacade.addUser(loginId, thesisTopic, givenNames, surname, email, studentNumber, academicUnit, program, sessionNumber, thesisTopic, bankAccountNumber, requesterType, supervisorGivenNames, supervisorSurname);
+// throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * The method used for adding a SUPERVISOR
+     * @param loginId
+     * @param unhashedPassword
+     * @param givenNames
+     * @param surname
+     * @param email
+     * @param employeeNumber
+     * @return 
+     */
     @Override
     public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, String employeeNumber) {
         return userFacade.addUser(loginId, unhashedPassword, givenNames, surname, email, employeeNumber);

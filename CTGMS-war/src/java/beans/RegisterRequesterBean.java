@@ -52,8 +52,8 @@ public class RegisterRequesterBean {
     public void submit() {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
-        //this.conferenceTravelGrantSystem.addUser();
-    }  
+        this.conferenceTravelGrantSystem.addUser(loginId, password, givenNames, surname, email, studentNumber, academicUnit, program, sessionNumber, thesisTopic, bankAccountNumber, studentType, supervisorGivenNames, supervisorSurname);
+        }  
 
     /**
      * @return the studentTypes
@@ -278,5 +278,6 @@ public class RegisterRequesterBean {
     public void setSupervisorSurname(String supervisorSurname) {
         this.supervisorSurname = supervisorSurname;
     }
-
+    
+    
 }

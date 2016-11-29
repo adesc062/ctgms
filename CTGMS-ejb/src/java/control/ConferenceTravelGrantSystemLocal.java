@@ -20,7 +20,7 @@ import userSubsystem.User;
 public interface ConferenceTravelGrantSystemLocal {
     
     public User findUser(String username, String unhashedPassword);
-    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword,
+    public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, 
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
             String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname);
     public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, String employeeNumber);

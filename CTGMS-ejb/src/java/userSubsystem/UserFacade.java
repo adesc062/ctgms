@@ -101,9 +101,9 @@ public class UserFacade implements UserFacadeLocal {
     }
 
     @Override
-    public boolean addUser(String loginId, String surname, String givenNames, String email, byte[] unhashedPassword,
-            String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic, String bankAccountNumber,
-            RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname) {
+    public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, 
+            String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
+            String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname) {
         try {
             //Randomly generate salt value
             final Random r = new SecureRandom();

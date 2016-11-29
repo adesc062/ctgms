@@ -38,8 +38,9 @@ public class SignInBean {
         //FacesContext context = FacesContext.getCurrentInstance();
         //ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         //this.conferenceTravelGrantSystem.createApplication(this.title, this.description, this.status, this.conference);
-        //conferenceTravelGrantSystem.findUser(loginId, password);
-        conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
+         conferenceTravelGrantSystem.findUser(loginId, password);
+         //for testing the list return
+        //conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
     }
     
     public String createRequesterAccount() {
