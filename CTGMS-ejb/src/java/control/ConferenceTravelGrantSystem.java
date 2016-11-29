@@ -5,10 +5,12 @@
  */
 package control;
 
+import applicationSubSystem.ApplicationFacadeLocal;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import applicationSubSystem.GrantApplication;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import javax.ejb.EJB;
@@ -25,6 +27,9 @@ import userSubsystem.UserFacadeLocal;
 public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemLocal {
 
     @EJB
+    private ApplicationFacadeLocal applicationFacade;
+
+    @EJB
     private UserFacadeLocal userFacade;
 
     @PersistenceContext(unitName = "CTGMS-ejbPU")
@@ -37,6 +42,13 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     @Override
     public User findUser(String username, String unhashedPassword) {
         return userFacade.findUser(username, unhashedPassword);
+    }
+    
+    @Override
+    public ArrayList<GrantApplication> getApplicationsRequiringSupervisorAttention(){
+        //if user NOT supervisor they should not be calling this OR user null
+        //May need to fix this so that it doesnt type cast a user
+        return applicationFacade.getListOfGrantApplicationsNeedingSupervisorApproval((Supervisor)user);
     }
 
     @Override

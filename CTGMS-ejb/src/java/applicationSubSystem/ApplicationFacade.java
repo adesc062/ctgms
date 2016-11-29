@@ -5,6 +5,7 @@
  */
 package applicationSubSystem;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -104,6 +105,23 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
         }
         return null;
      }
+     public ArrayList<GrantApplication> getListOfGrantApplicationsNeedingSupervisorApproval(Supervisor supervisor){
+          try {
+            Query query = em.createQuery(
+                    "SELECT gA FROM GrantApplication gA"
+                            + " JOIN Requester r ON gA.requester = r"
+                    + " WHERE r.supervisor = :supervisor");
+            query.setParameter("supervisor", supervisor);
+           List resultList = query.getResultList();
+            ArrayList<GrantApplication> users = new ArrayList<GrantApplication>();
+                    users.addAll(resultList);
+                    return users;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+          return null;
+     }
+
 
     public void persist(Object object) {
         em.persist(object);
