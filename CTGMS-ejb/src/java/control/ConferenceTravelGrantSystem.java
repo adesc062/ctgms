@@ -45,6 +45,10 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     }
     
     @Override
+    public User login(String username, String unhashedPassword){
+        return userFacade.login(username, unhashedPassword);
+    }
+    @Override
     public ArrayList<GrantApplication> getApplicationsRequiringSupervisorAttention(){
         //if user NOT supervisor they should not be calling this OR user null
         //May need to fix this so that it doesnt type cast a user

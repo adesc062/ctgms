@@ -56,6 +56,7 @@ public class UserFacade implements UserFacadeLocal {
     @Override
     public User findUser(String loginId, String unhashedPassword) {
         findSalt(loginId);
+        
         return new User();
     }
     
@@ -63,13 +64,16 @@ public class UserFacade implements UserFacadeLocal {
     public Supervisor findSupervisorByName(String givenNames, String surname) {
         try {
             Query query = em.createQuery(
-                    "SELECT s FROM Supervisors7972857 s"
+                    "SELECT s FROM Supervisor s"
                     + " WHERE s.givenNames = :givenNames AND s.surname = :surname"
-                    + " LIMIT 1");
+                    );
             query.setParameter("givenNames", givenNames);
             query.setParameter("surname", surname);
             List resultList = query.getResultList();
-            return (Supervisor) resultList.get(0);
+            ArrayList<Supervisor> supervisors = new ArrayList<Supervisor>();
+                    supervisors.addAll(resultList);
+            Supervisor sup= supervisors.get(0);
+            return sup;
         } catch (Exception e) {
         }
         return null;

@@ -13,6 +13,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import userSubsystem.RequesterTypeEnum;
+import userSubsystem.Supervisor;
+import userSubsystem.User;
 
 /**
  *
@@ -34,11 +36,15 @@ public class SignInBean {
     public SignInBean() {
     }
 
-    public void submit() {
+    public String submit() {
         //FacesContext context = FacesContext.getCurrentInstance();
         //ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         //this.conferenceTravelGrantSystem.createApplication(this.title, this.description, this.status, this.conference);
-         conferenceTravelGrantSystem.findUser(loginId, password);
+         User user = conferenceTravelGrantSystem.login(loginId, password);
+         if(user.getClass().getName() != null){
+              return "requesterScreen";
+         }
+        return "signin";
          //for testing the list return
         //conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
     }
