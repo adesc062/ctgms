@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package beans;
+package beans.supervisor;
 
 import applicationSubSystem.GrantApplication;
 import control.ConferenceTravelGrantSystemLocal;
@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -48,5 +50,11 @@ public class SupervisorBean {
 
     public void setApplicationsRequiringAttention(ArrayList<GrantApplication> applicationsRequiringAttention) {
         this.applicationsRequiringAttention = applicationsRequiringAttention;
+    }
+    
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.setAttribute("Requester", null);
+        return "/SignInScreen?faces-redirect=true";
     }
 }

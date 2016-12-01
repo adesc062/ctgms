@@ -45,9 +45,10 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     }
     
     @Override
-    public User login(String username, String unhashedPassword){
+    public User login(String username, String unhashedPassword) {       
         return userFacade.login(username, unhashedPassword);
     }
+    
     @Override
     public ArrayList<GrantApplication> getApplicationsRequiringSupervisorAttention(){
         //if user NOT supervisor they should not be calling this OR user null
@@ -78,7 +79,6 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
             String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname) {
        return userFacade.addUser(loginId, thesisTopic, givenNames, surname, email, studentNumber, academicUnit, program, sessionNumber, thesisTopic, bankAccountNumber, requesterType, supervisorGivenNames, supervisorSurname);
-// throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

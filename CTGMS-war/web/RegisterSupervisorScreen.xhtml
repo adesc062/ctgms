@@ -8,29 +8,31 @@
         <title>Register Supervisor Account</title>
     </h:head>
     <h:body>
-        <h3>Register Supervisor Account</h3>
-        <h:form>
-            <h:outputText value="Username:"></h:outputText>
-            <h:inputText id="loginIdIn" value="#{registerSupervisorBean.loginId}"></h:inputText>
-            <br/>
-            <h:outputText value="Password:"></h:outputText>
-            <h:inputText id="passwordIn" value="#{registerSupervisorBean.password}"></h:inputText>
-            <br/>
-            <h:outputText value="Given Names:"></h:outputText>
-            <h:inputText id="givenNamesIn" value="#{registerSupervisorBean.givenNames}"></h:inputText>
-            <br/>
-            <h:outputText value="Surname:"></h:outputText>
-            <h:inputText id="surnameIn" value="#{registerSupervisorBean.surname}"></h:inputText>
-            <br/>
-            <h:outputText value="Email:"></h:outputText>
-            <h:inputText id="emailIn" value="#{registerSupervisorBean.email}"></h:inputText>
-            <br/>
-            <h:outputText value="Employee Number:"></h:outputText>
-            <h:inputText id="employeeNumberIn" value="#{registerSupervisorBean.employeeNumber}"></h:inputText>
-            <br/>
-            <br/>
-            <h:commandButton value="Submit" type="command" actionListener="#{registerSupervisorBean.submit()}"/>
-        </h:form>
+        <div class="container">
+            <h4>Register Supervisor Account</h4>
+            <h:form>
+                <h:outputText value="Username:"></h:outputText>
+                <h:inputText id="loginIdIn" value="#{registerSupervisorBean.loginId}"></h:inputText>
+                <br/>
+                <h:outputText value="Password:"></h:outputText>
+                <h:inputText id="passwordIn" value="#{registerSupervisorBean.password}"></h:inputText>
+                <br/>
+                <h:outputText value="Given Names:"></h:outputText>
+                <h:inputText id="givenNamesIn" value="#{registerSupervisorBean.givenNames}"></h:inputText>
+                <br/>
+                <h:outputText value="Surname:"></h:outputText>
+                <h:inputText id="surnameIn" value="#{registerSupervisorBean.surname}"></h:inputText>
+                <br/>
+                <h:outputText value="Email:"></h:outputText>
+                <h:inputText id="emailIn" value="#{registerSupervisorBean.email}"></h:inputText>
+                <br/>
+                <h:outputText value="Employee Number:"></h:outputText>
+                <h:inputText id="employeeNumberIn" value="#{registerSupervisorBean.employeeNumber}"></h:inputText>
+                <br/>
+                <br/>
+                <h:commandButton value="Submit" type="command" actionListener="#{registerSupervisorBean.submit()}"/>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

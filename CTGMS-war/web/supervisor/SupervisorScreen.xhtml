@@ -5,15 +5,18 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Supervisor Page</title>
+        <title>Conference Travel Grant System</title>
     </h:head>
     <h:body>
-        <h3>List of applications</h3>
-        <h:dataTable value="#{supervisorBean.applicationsRequiringAttention}"
-                     var="app">
-        
-        
-        </h:dataTable>
+        <div class="container">
+            <h4>List of applications</h4>
+            <h:dataTable value="#{supervisorBean.applicationsRequiringAttention}"
+                         var="app">
+
+
+            </h:dataTable>
+            <h:commandButton value="Logout" type="command" action="#{supervisorBean.logout()}"/>
+        </div>
     </h:body>
 </html>
 
