@@ -42,7 +42,6 @@ public class SignInBean {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.setAttribute("Requester", null);
         session.setAttribute("Supervisor", null);
-        System.out.println(user.getClass().getName());
         if (user.getClass().getName().equals("userSubsystem.Requester")) {
             session.setAttribute("Requester", user);
             return "requester/RequesterScreen?faces-redirect=true";

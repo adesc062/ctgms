@@ -9,6 +9,7 @@ import javax.ejb.Local;
 import applicationSubSystem.GrantApplication;
 import java.util.ArrayList;
 import java.util.Date;
+import userSubsystem.Requester;
 import userSubsystem.RequesterTypeEnum;
 import userSubsystem.Supervisor;
 import userSubsystem.User;
@@ -26,7 +27,7 @@ public interface ConferenceTravelGrantSystemLocal {
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
             String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname);
     public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, String employeeNumber);
-    public boolean createGrantApplication(String title, String description, String status,
+    public boolean createGrantApplication(String title, String description, String status, Requester requester,
             String conferenceName, String conferenceWebsite, Date conferenceStartDate, Date conferenceEndDate,
             double registrationAmount, double transportationAmount, double accomodationAmount, double mealsAmount);
     public boolean makeRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application);

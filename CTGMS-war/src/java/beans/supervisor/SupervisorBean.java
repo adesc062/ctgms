@@ -27,7 +27,6 @@ public class SupervisorBean {
     
     private ArrayList<GrantApplication> applicationsRequiringAttention;
 
-     
     /**
      * Creates a new instance of SupervisorBean
      */
@@ -45,7 +44,7 @@ public class SupervisorBean {
     
     public String logout() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        session.setAttribute("Requester", null);
+        session.setAttribute("Supervisor", null);
         return "/SignInScreen?faces-redirect=true";
     }
 }

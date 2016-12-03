@@ -102,14 +102,14 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     }
 
     @Override
-    public boolean createGrantApplication(String title, String description, String status,
+    public boolean createGrantApplication(String title, String description, String status, Requester requester,
             String conferenceName, String conferenceWebsite, Date conferenceStartDate, Date conferenceEndDate,
             double registrationAmount, double transportationAmount, double accomodationAmount, double mealsAmount) {
         Conference conference = applicationFacade.findConference(conferenceName);
         if (conference == null) {
             conference = applicationFacade.createConference(conferenceName, conferenceWebsite, conferenceStartDate, conferenceEndDate);
         }
-        applicationFacade.createGrantApplication(title, conference, description, (Requester) user,
+        applicationFacade.createGrantApplication(title, conference, description, requester,
                 registrationAmount, transportationAmount, accomodationAmount, mealsAmount);
         return true;
     }
