@@ -5,6 +5,7 @@
  */
 package userSubsystem;
 
+import applicationSubSystem.GrantApplication;
 import javax.ejb.Local;
 
 /**
@@ -16,7 +17,7 @@ public interface UserFacadeLocal {
        
     public User login(String loginId, String unhashedPassword);
     public byte[] findSalt(String loginId); 
-    public User findUser(String loginId, String unhashedPassword);
+    public String getRequesterName(GrantApplication grantApp);
     public Supervisor findSupervisorByName(String supervisorGivenNames, String supervisorSurname);
     public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, 
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,

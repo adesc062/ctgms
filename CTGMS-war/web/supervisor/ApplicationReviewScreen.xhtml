@@ -11,42 +11,40 @@
         <div class="container">
             <h4>Review Application</h4>
             <h:form>
-                <h:outputText value="Application Title"></h:outputText>
+                <h:outputText value="Application Title: "></h:outputText>
                 <h:outputText value="#{applicationReviewBean.title}"></h:outputText>
                 <br/>
-                <h:outputText value="Conference"></h:outputText>
+                <h:outputText value="Conference Name: "></h:outputText>
                 <h:outputText value="#{applicationReviewBean.conference}"></h:outputText>
                 <br/>
-                <h:outputText value="Requester"></h:outputText>
+                <h:outputText value="Requester's Name: "></h:outputText>
                 <h:outputText value="#{applicationReviewBean.requesterName}"></h:outputText>
                 <br/>
-                <h:outputText value="Description"></h:outputText>
+                <h:outputText value="Description: "></h:outputText>
                 <h:outputText value="#{applicationReviewBean.description}"></h:outputText>
                 <br/>
                 <br/>
                 <h:outputText value="Expense Report"></h:outputText> 
                 <hr/>
-                <h:outputText value="Registration Expense Amount"></h:outputText>
+                <h:outputText value="Registration Expense Amount: "></h:outputText>
                 <h:outputText value="#{applicationReviewBean.registrationAmount}"></h:outputText>
                 <br/>
-                <h:outputText value="Transportation Expense Amount"></h:outputText>
+                <h:outputText value="Transportation Expense Amount: "></h:outputText>
                 <h:outputText value="#{applicationReviewBean.transportationAmount}"></h:outputText>
                 <br/>
-                <h:outputText value="Accomodation Expense Amount"></h:outputText>
+                <h:outputText value="Accomodation Expense Amount: "></h:outputText>
                 <h:outputText value="#{applicationReviewBean.accomodationAmount}"></h:outputText>
                 <br/>
-                <h:outputText value="Meals Expense Amount"></h:outputText>
+                <h:outputText value="Meals Expense Amount: "></h:outputText>
                 <h:outputText value="#{applicationReviewBean.mealsAmount}"></h:outputText>
                 <br/>
                 <br/>
                 <h:outputText value="Comments: "></h:outputText>
                 <h:inputTextarea rows="10" value="#{applicationReviewBean.comments}"></h:inputTextarea>
                 <br/>
-                <h:commandButton value="Submit" type="command" actionListener="#{applicationReviewBean.accept()}"/>
-                <br/>
-                <h:commandButton value="Submit" type="command" actionListener="#{applicationReviewBean.markIncomplete()}"/>
-                <br/>
-                <h:commandButton value="Submit" type="command" actionListener="#{applicationReviewBean.reject()}"/>
+                <h:commandButton value="Accept" type="command" actionListener="#{applicationReviewBean.accept()}"/>
+                <h:commandButton value="Mark Incomplete" type="command" actionListener="#{applicationReviewBean.markIncomplete()}"/>
+                <h:commandButton value="Reject" type="command" actionListener="#{applicationReviewBean.reject()}"/>
             </h:form>
         </div>
     </h:body>

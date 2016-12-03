@@ -10,12 +10,16 @@
     <h:body>
         <div class="container">
             <h4>List of applications</h4>
-            <h:dataTable value="#{supervisorBean.applicationsRequiringAttention}"
-                         var="app">
-                <h:column >#{app.getTitle()}</h:column>
-                <h:commandButton actionListener="#{supervisorBean.viewGrant(app)}"></h:commandButton>
-            </h:dataTable>
-            <h:commandButton value="Logout" type="command" action="#{supervisorBean.logout()}"/>
+            <h:form>
+                <h:dataTable value="#{supervisorBean.applicationsRequiringAttention}"
+                             var="app">
+                    <h:column >#{app.getTitle()}</h:column>
+                    <h:column >
+                        <h:commandButton value="Review" action="#{supervisorBean.viewGrant(app)}"></h:commandButton>
+                    </h:column >
+                </h:dataTable>
+                <h:commandButton value="Logout" type="command" action="#{supervisorBean.logout()}"/>
+            </h:form>
         </div>
     </h:body>
 </html>
