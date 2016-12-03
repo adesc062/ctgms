@@ -8,6 +8,8 @@ package applicationSubSystem;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +24,9 @@ public class ExpenseEntry implements Serializable {
 
     private ExpensePolicy policy;
     private GrantApplication grantApp;
-    private int expenseAmount;
+    private double expenseAmount;
+    @Enumerated(EnumType.ORDINAL)
+    private ExpenseTypeEnum expenseType;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,16 +36,15 @@ public class ExpenseEntry implements Serializable {
         //empty for jpu
     }
     
-    public ExpenseEntry(ExpensePolicy policy, GrantApplication grantApp, int expenseAmount) {
-        this.setup(policy,expenseAmount, grantApp);
+    public ExpenseEntry(GrantApplication grantApp, double expenseAmount, ExpenseTypeEnum expenseType) {
+        this.setup(expenseAmount, grantApp, expenseType);
         grantApp.addToTotal(this);  
     }
-
-    
-    public void setup(ExpensePolicy policy, int expenseAmount, GrantApplication grantApp) {
-        this.policy = policy;
+ 
+    public void setup(double expenseAmount, GrantApplication grantApp, ExpenseTypeEnum expenseType) {
         this.expenseAmount = expenseAmount;
         this.grantApp=grantApp;
+        this.setExpenseType(expenseType);
     }
 
     public Long getId() {
@@ -94,15 +97,29 @@ public class ExpenseEntry implements Serializable {
     /**
      * @return the expenseAmount
      */
-    public int getExpenseAmount() {
+    public double getExpenseAmount() {
         return expenseAmount;
     }
 
     /**
      * @param expenseAmount the expenseAmount to set
      */
-    public void setExpenseAmount(int expenseAmount) {
+    public void setExpenseAmount(double expenseAmount) {
         this.expenseAmount = expenseAmount;
+    }
+
+    /**
+     * @return the expenseType
+     */
+    public ExpenseTypeEnum getExpenseType() {
+        return expenseType;
+    }
+
+    /**
+     * @param expenseType the expenseType to set
+     */
+    public void setExpenseType(ExpenseTypeEnum expenseType) {
+        this.expenseType = expenseType;
     }
     
 }

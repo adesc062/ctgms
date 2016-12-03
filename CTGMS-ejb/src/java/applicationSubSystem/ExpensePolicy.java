@@ -35,7 +35,7 @@ public class ExpensePolicy implements Serializable {
     }
 
     public ExpensePolicy(int maxAmount, ExpenseTypeEnum expenseType) {
-        this.setup( maxAmount, expenseType);
+        this.setup(maxAmount, expenseType);
     }
 
     
