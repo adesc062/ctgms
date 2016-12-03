@@ -32,19 +32,10 @@ public class SupervisorBean {
      * Creates a new instance of SupervisorBean
      */
     public SupervisorBean() {
-        applicationsRequiringAttention = conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
     }
-
-    public ConferenceTravelGrantSystemLocal getConferenceTravelGrantSystem() {
-        return conferenceTravelGrantSystem;
-    }
-
-    public void setConferenceTravelGrantSystem(ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem) {
-        this.conferenceTravelGrantSystem = conferenceTravelGrantSystem;
-    }
-    
     
     public ArrayList<GrantApplication> getApplicationsRequiringAttention() {
+        applicationsRequiringAttention = conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
         return applicationsRequiringAttention;
     }
 

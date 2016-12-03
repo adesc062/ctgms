@@ -7,12 +7,14 @@ package applicationSubSystem;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import userSubsystem.Requester;
 
@@ -20,55 +22,48 @@ import userSubsystem.Requester;
  *
  * @author ralle057
  */
-
- 
-
 @Entity
-@Table(name="GrantApplications7972857")
+@Table(name = "GrantApplications7972857")
 public class GrantApplication implements Serializable {
-private String title;
-//ignoredType
- private Conference conference;
- private LinkedList<ExpenseEntry> expenses;
- private String description;
- private int total;
- 
- @Enumerated(EnumType.ORDINAL)
- private ApplicationStatusEnum applicationStatus;
- private Requester requester;
- private SupervisorRecommendation supervisorRecommendation;
-// private Expense 
+
+    private String title;
+    private Conference conference;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private LinkedList<ExpenseEntry> expenses;
+    private String description;
+    private double total;
+    @Enumerated(EnumType.ORDINAL)
+    private ApplicationStatusEnum applicationStatus;
+    private Requester requester;
+    private SupervisorRecommendation supervisorRecommendation;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue()
     private Long id;
 
-    public GrantApplication(){
-        //for jpu
-    }
-    
+    public GrantApplication() {}
+
     public GrantApplication(String title, Conference conference, String description, Requester requester) {
-        this.setup(title, conference, description,requester);
+        this.setup(title, conference, description, requester);
     }
-    
-    
 
     public void setup(String title, Conference conference, String description, Requester requester) {
         this.title = title;
         this.conference = conference;
-       // this.expenses = expenses; //this will be done through setter. See sequence diagram
+        // this.expenses = expenses; //this will be done through setter. See sequence diagram
         this.description = description;
-        this.setRequester(requester);
         this.applicationStatus = applicationStatus.INCOMPLETE;
+        this.setRequester(requester);
         //this.requester= requester;done later in sequence
-        this.setExpenses(new LinkedList<ExpenseEntry>());
+        this.setExpenses(new LinkedList<>());
         this.setTotal(0);
     }
 
     public Long getId() {
-           //"TEST";
+        //"TEST";
         return id;
-     
+
     }
 
     public void setId(Long id) {
@@ -114,7 +109,6 @@ private String title;
         this.title = title;
     }
 
-   
     /**
      * @return the conference
      */
@@ -146,8 +140,6 @@ private String title;
     /**
      * @return the expenses
      */
-    
-
     /**
      * @return the applicationStatus
      */
@@ -161,11 +153,11 @@ private String title;
     public void setStatus(ApplicationStatusEnum applicationStatus) {
         this.applicationStatus = applicationStatus;
     }
-    
+
     //used Dependancy injection
-    public void addToTotal(ExpenseEntry expenseEntry){
+    public void addToTotal(ExpenseEntry expenseEntry) {
         getExpenses().add(expenseEntry);
-        this.setTotal(this.getTotal() + expenseEntry.getExpenseAmount());
+        this.setTotal(getTotal() + expenseEntry.getExpenseAmount());
     }
 
     /**
@@ -185,14 +177,14 @@ private String title;
     /**
      * @return the total
      */
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
     /**
      * @param total the total to set
      */
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -209,9 +201,9 @@ private String title;
     public void setRequester(Requester requester) {
         this.requester = requester;
     }
-    
-    public void addSupervisorRecommendation(SupervisorRecommendation superRec){
-        this.supervisorRecommendation=superRec;
+
+    public void addSupervisorRecommendation(SupervisorRecommendation superRec) {
+        this.supervisorRecommendation = superRec;
     }
-    
+
 }

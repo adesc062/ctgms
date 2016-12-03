@@ -20,10 +20,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Conferences7972857")
 public class Conference implements Serializable {
-    private Date startDate;
-    private Date endDate;
     private String name;
     private String website;
+    private Date startDate;
+    private Date endDate;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,16 +36,17 @@ public class Conference implements Serializable {
     public Conference(){
         //default constuctor, required by jpu
     }
-    public Conference(Date startDate, Date endDate, String name, String website) {
-        this.setup(startDate, endDate, name, website);
+    public Conference(String name, String website, Date startDate, Date endDate) {
+        this.setup(name, website, startDate, endDate);
     }
     
-    private void setup(Date startDate, Date endDate, String name, String website){
-        this.startDate=startDate;
-        this.endDate=endDate;
-        this.name=name;
-        this.website=website;
+    private void setup(String name, String website, Date startDate, Date endDate){
+        this.name = name;
+        this.website = website;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
+    
     public void setId(Long id) {
         this.id = id;
     }
