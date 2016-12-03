@@ -18,33 +18,26 @@ import userSubsystem.Supervisor;
  * @author user1
  */
 @Entity
-@Table(name="SupervisorRecommendations7972857")
+@Table(name = "SupervisorRecommendations7972857")
 public class SupervisorRecommendation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-private String requestedChanges;
-private Supervisor supervisor;
+    private String requestedChanges;
+    private Supervisor supervisor;
 
-
-
-public void setup(String requestedChanges, Supervisor supervisor) {     
+    public void setup(String requestedChanges, Supervisor supervisor) {
         this.requestedChanges = requestedChanges;
         this.supervisor = supervisor;
-     
-    }
-    public SupervisorRecommendation(){
-        
     }
 
+    public SupervisorRecommendation() {}
 
     public SupervisorRecommendation(String requestedChanges, Supervisor supervisor) {
-        this.setup(requestedChanges,supervisor);
+        this.setup(requestedChanges, supervisor);
     }
-    
-   
 
     public Long getId() {
         return id;
@@ -79,9 +72,6 @@ public void setup(String requestedChanges, Supervisor supervisor) {
         return "applicationSubSystem.SupervisorRecommendation[ id=" + id + " ]";
     }
 
-
-    
-
     /**
      * @return the requestedChanges
      */
@@ -95,5 +85,5 @@ public void setup(String requestedChanges, Supervisor supervisor) {
     public void setRequestedChanges(String requestedChanges) {
         this.requestedChanges = requestedChanges;
     }
-    
+
 }

@@ -78,10 +78,6 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
         ExpenseEntry accomodationExpenseEntry = new ExpenseEntry(grantApp, accomodationAmount, ExpenseTypeEnum.Accomodation);
         ExpenseEntry mealsExpenseEntry = new ExpenseEntry(grantApp, mealsAmount, ExpenseTypeEnum.Meals);
         em.persist(grantApp);
-        //em.persist(registrationExpenseEntry);
-        //em.persist(transporationExpenseEntry);
-        //em.persist(accomodationExpenseEntry);
-        //em.persist(mealsExpenseEntry);
         return grantApp;
     }
 
@@ -103,7 +99,6 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
     @Override
     public ArrayList<GrantApplication> getListOfGrantApplicationsNeedingSupervisorApproval(Supervisor supervisor) {
         try {
-
             //Query query = em.createQuery(
             //        "SELECT gA FROM GrantApplication gA"
             //        + " JOIN Requester r ON gA.requester = r"
@@ -125,6 +120,7 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
     @Override
      public void setStatus(GrantApplication grantApp, ApplicationStatusEnum status){
          grantApp.setStatus(status);
+         //em.merge(grantApp);
      }
      
      
@@ -136,6 +132,7 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
     @Override
     public SupervisorRecommendation createSupervisorRecommendation(Supervisor supervisor,String comments){
         SupervisorRecommendation superRec = new SupervisorRecommendation(comments,supervisor);
+        em.persist(superRec);
         return superRec;
     }
     

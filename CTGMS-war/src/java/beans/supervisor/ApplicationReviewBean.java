@@ -52,7 +52,7 @@ public class ApplicationReviewBean {
         makeRecommendation(ApplicationStatusEnum.INCOMPLETE);
     }
 
-    public void reject() {
+    public void refuse() {
         makeRecommendation(ApplicationStatusEnum.REFUSED);
     }
 
@@ -60,7 +60,8 @@ public class ApplicationReviewBean {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        this.conferenceTravelGrantSystem.makeRecommendation(status, (Supervisor) session.getAttribute("Supervisor"), this.comments, this.grantApp);
+        this.conferenceTravelGrantSystem.makeRecommendation(status, (Supervisor) session.getAttribute("Supervisor"),
+                this.comments, (GrantApplication) session.getAttribute("GrantApp"));
     }
 
     public String getTitle() {
@@ -172,8 +173,7 @@ public class ApplicationReviewBean {
     /**
      * Creates a new instance of ApplicationReviewBean
      */
-    public ApplicationReviewBean() {
-    }
+    public ApplicationReviewBean() {}
 
     /**
      * @return the requesterName
