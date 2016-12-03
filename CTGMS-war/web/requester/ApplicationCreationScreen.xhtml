@@ -11,32 +11,41 @@
         <div class="container">
             <h4>Create Application</h4>
             <h:form>
-                <h:outputText value="Application Title"></h:outputText>
+                <h:outputText value="Application Title:"></h:outputText>
                 <h:inputText id="titleIn" value="#{applicationCreationBean.title}"></h:inputText>
                 <br/>
-                <h:outputText value="Conference"></h:outputText>
-                <h:inputText id="conferenceIn" value="#{applicationCreationBean.conference}"></h:inputText>
-                <br/>
-                <h:outputText value="Status"></h:outputText>
-                <h:inputText id="statusIn" value="#{applicationCreationBean.status}"></h:inputText>
-                <br/>
-                <h:outputText value="Description"></h:outputText>
+                <h:outputText value="Description:"></h:outputText>
                 <h:inputText id="descriptionIn" value="#{applicationCreationBean.description}"></h:inputText>
                 <br/>
                 <br/>
                 <h5>Expense Report</h5>
                 <hr/>
-                <h:outputText value="Registration Expense Amount"></h:outputText>
+                <h:outputText value="Registration Expense Amount:"></h:outputText>
                 <h:inputText id="registrationExpenseAmountIn" value="#{applicationCreationBean.registrationAmount}"></h:inputText>
                 <br/>
-                <h:outputText value="Transportation Expense Amount"></h:outputText>
+                <h:outputText value="Transportation Expense Amount:"></h:outputText>
                 <h:inputText id="transportationExpenseAmountIn" value="#{applicationCreationBean.transportationAmount}"></h:inputText>
                 <br/>
-                <h:outputText value="Accomodation Expense Amount"></h:outputText>
+                <h:outputText value="Accomodation Expense Amount:"></h:outputText>
                 <h:inputText id="accomodationExpenseAmountIn" value="#{applicationCreationBean.accomodationAmount}"></h:inputText>
                 <br/>
-                <h:outputText value="Meals Expense Amount"></h:outputText>
+                <h:outputText value="Meals Expense Amount:"></h:outputText>
                 <h:inputText id="mealsExpenseAmountIn" value="#{applicationCreationBean.mealsAmount}"></h:inputText>
+                <br/>
+                <br/>
+                <h5>Conference</h5>
+                <hr/>
+                <h:outputText value="Conference Name:"></h:outputText>
+                <h:inputText id="conferenceName" value="#{applicationCreationBean.conferenceName}"></h:inputText>
+                <br/>
+                <h:outputText value="Conference Website:"></h:outputText>
+                <h:inputText id="conferenceWebsite" value="#{applicationCreationBean.conferenceWebsite}"></h:inputText>
+                <br/>
+                <h:outputText value="Conference Start Date:"></h:outputText>
+                <h:inputText id="conferenceStartDate" value="#{applicationCreationBean.conferenceStartDateString}"></h:inputText>
+                <br/>
+                <h:outputText value="Conference End Date:"></h:outputText>
+                <h:inputText id="conferenceEndDate" value="#{applicationCreationBean.conferenceEndDateString}"></h:inputText>
                 <br/>
                 <br/>
                 <h:commandButton value="Submit" type="command" actionListener="#{applicationCreationBean.submit()}"/>

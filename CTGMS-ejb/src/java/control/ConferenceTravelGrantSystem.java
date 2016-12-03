@@ -6,14 +6,17 @@
 package control;
 
 import applicationSubSystem.ApplicationFacadeLocal;
+import applicationSubSystem.Conference;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import applicationSubSystem.GrantApplication;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.ejb.EJB;
+import userSubsystem.Requester;
 import userSubsystem.RequesterTypeEnum;
 import userSubsystem.Supervisor;
 import userSubsystem.User;
@@ -53,11 +56,12 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     public ArrayList<GrantApplication> getApplicationsRequiringSupervisorAttention(){
         //if user NOT supervisor they should not be calling this OR user null
         //May need to fix this so that it doesnt type cast a user
-        return applicationFacade.getListOfGrantApplicationsNeedingSupervisorApproval((Supervisor)user);
+        return applicationFacade.getListOfGrantApplicationsNeedingSupervisorApproval((Supervisor) user);
     }
 
     /**
      * The method used for adding a REQUESTER
+     * 
      * @param loginId
      * @param surname
      * @param givenNames
@@ -83,6 +87,7 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
 
     /**
      * The method used for adding a SUPERVISOR
+     * 
      * @param loginId
      * @param unhashedPassword
      * @param givenNames
@@ -97,8 +102,16 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     }
 
     @Override
-    public boolean createApplication(String title, String description, String status, String conference) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean createGrantApplication(String title, String description, String status,
+            String conferenceName, String conferenceWebsite, Date conferenceStartDate, Date conferenceEndDate,
+            double registrationAmount, double transportationAmount, double accomodationAmount, double mealsAmount) {
+        Conference conference = applicationFacade.findConference(conferenceName);
+        if (conference == null) {
+            conference = applicationFacade.createConference(conferenceName, conferenceWebsite, conferenceStartDate, conferenceEndDate);
+        }
+        applicationFacade.createGrantApplication(title, conference, description, (Requester) user,
+                registrationAmount, transportationAmount, accomodationAmount, mealsAmount);
+        return true;
     }
 
     @Override

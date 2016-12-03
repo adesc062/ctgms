@@ -7,12 +7,14 @@ package applicationSubSystem;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import userSubsystem.Requester;
 
@@ -21,17 +23,16 @@ import userSubsystem.Requester;
  * @author ralle057
  */
 
- 
-
 @Entity
 @Table(name="GrantApplications7972857")
 public class GrantApplication implements Serializable {
 private String title;
 //ignoredType
  private Conference conference;
+ @OneToMany(cascade=CascadeType.PERSIST)
  private LinkedList<ExpenseEntry> expenses;
  private String description;
- private int total;
+ private double total;
  
  @Enumerated(EnumType.ORDINAL)
  private ApplicationStatusEnum applicationStatus;
@@ -165,7 +166,7 @@ private String title;
     //used Dependancy injection
     public void addToTotal(ExpenseEntry expenseEntry){
         getExpenses().add(expenseEntry);
-        this.setTotal(this.getTotal() + expenseEntry.getExpenseAmount());
+        this.setTotal(getTotal() + expenseEntry.getExpenseAmount());
     }
 
     /**
@@ -185,14 +186,14 @@ private String title;
     /**
      * @return the total
      */
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
     /**
      * @param total the total to set
      */
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
