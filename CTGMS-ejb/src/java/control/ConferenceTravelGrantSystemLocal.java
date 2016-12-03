@@ -5,6 +5,7 @@
  */
 package control;
 
+import applicationSubSystem.ApplicationStatusEnum;
 import javax.ejb.Local;
 import applicationSubSystem.GrantApplication;
 import java.util.ArrayList;
@@ -26,6 +27,6 @@ public interface ConferenceTravelGrantSystemLocal {
             String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname);
     public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, String employeeNumber);
     public boolean createApplication(String title, String description, String status, String conference);
-    public boolean makeRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application);
+    public boolean makeRecommendation(ApplicationStatusEnum status, String requestedChanges, GrantApplication application);
     public ArrayList<GrantApplication> getApplicationsRequiringSupervisorAttention();
 }

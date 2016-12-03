@@ -52,6 +52,12 @@ public class SupervisorBean {
         this.applicationsRequiringAttention = applicationsRequiringAttention;
     }
     
+    public String viewGrant(GrantApplication grant){
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.setAttribute("GrantApp", grant);
+        return "ApplicationReviewScreen";
+    }
+    
     public String logout() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.setAttribute("Requester", null);

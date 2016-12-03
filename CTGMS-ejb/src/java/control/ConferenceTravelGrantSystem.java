@@ -6,6 +6,7 @@
 package control;
 
 import applicationSubSystem.ApplicationFacadeLocal;
+import applicationSubSystem.ApplicationStatusEnum;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -102,7 +103,7 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     }
 
     @Override
-    public boolean makeRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application) {
+    public boolean makeRecommendation(ApplicationStatusEnum status, String requestedChanges, GrantApplication application) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

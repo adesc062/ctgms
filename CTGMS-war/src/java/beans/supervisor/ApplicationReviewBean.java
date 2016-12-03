@@ -5,12 +5,17 @@
  */
 package beans.supervisor;
 
+import applicationSubSystem.ApplicationStatusEnum;
+import applicationSubSystem.ExpenseEntry;
+import applicationSubSystem.GrantApplication;
 import control.ConferenceTravelGrantSystemLocal;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -22,6 +27,7 @@ public class ApplicationReviewBean {
 
     @EJB
     private ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem;
+    private GrantApplication grantApp;
     private String title;
     private String status;//should be enum/set value
     private String conference;
@@ -48,6 +54,12 @@ public class ApplicationReviewBean {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         //this.conferenceTravelGrantSystem.rejectApplication();
+    }
+    
+    public void makeRecommendation(ApplicationStatusEnum status){
+        FacesContext context = FacesContext.getCurrentInstance();
+        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
+        this.conferenceTravelGrantSystem.makeRecommendation(status, this.comments, this.grantApp);
     }
     
     public ConferenceTravelGrantSystemLocal getConferenceTravelGrantSystem() {
@@ -133,6 +145,20 @@ public class ApplicationReviewBean {
      * Creates a new instance of ApplicationReviewBean
      */
     public ApplicationReviewBean() {
-    }
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        grantApp=(GrantApplication) session.getAttribute("GrantApp");
+        this.conference= grantApp.getConference().getName();
+        this.description = grantApp.getDescription();
+        this.title= grantApp.getTitle();
+        LinkedList<ExpenseEntry> exEnts = this.grantApp.getExpenses();
+        for(int i=0 ; i< exEnts.size();i++){
+            ExpenseEntry expense=exEnts.get(i);
+            if(true){
+                
+            }
+        }
+        
     
+    
+}
 }
