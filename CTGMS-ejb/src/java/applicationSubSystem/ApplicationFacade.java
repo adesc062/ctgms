@@ -109,12 +109,14 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
     @Override
     public ArrayList<GrantApplication> getListOfGrantApplicationsNeedingSupervisorApproval(Supervisor supervisor) {
         try {
+
             Query query = em.createQuery(
                     "SELECT gA FROM GrantApplication gA"
                     + " JOIN Requester r ON gA.requester = r"
                     + " WHERE r.supervisor = :supervisor");
             query.setParameter("supervisor", supervisor);
             List resultList = query.getResultList();
+            // ArrayList<Requester> = supervisor.getR
             ArrayList<GrantApplication> grantApplications = new ArrayList<>();
             grantApplications.addAll(resultList);
             return grantApplications;
