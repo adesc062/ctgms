@@ -5,6 +5,7 @@
  */
 package beans.requester;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import control.ConferenceTravelGrantSystemLocal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -15,6 +16,10 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import userSubsystem.Requester;
 import userSubsystem.RequesterTypeEnum;
 
 /**
@@ -101,7 +106,10 @@ public class ApplicationCreationBean {
         } catch (Exception e) {
             //Do stuff
         }
-        this.conferenceTravelGrantSystem.createGrantApplication(title, description, status, conferenceName, conferenceWebsite, conferenceStartDate, conferenceEndDate,
+         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Requester requester = (Requester) session.getAttribute("Requester");
+        this.conferenceTravelGrantSystem.createGrantApplication(title, description, status, requester,
+                conferenceName, conferenceWebsite, conferenceStartDate, conferenceEndDate,
                 registrationAmount, transportationAmount, accomodationAmount, mealsAmount);
     }
     
