@@ -25,35 +25,26 @@ public class SupervisorRecommendation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private boolean isApproved;
-private boolean isSigned;
 private String requestedChanges;
 private Supervisor supervisor;
-private GrantApplication application;
 
 
-public void setup(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor, GrantApplication application) {
-        this.isApproved = isApproved;
-        this.isSigned = isSigned;
+
+public void setup(String requestedChanges, Supervisor supervisor) {     
         this.requestedChanges = requestedChanges;
         this.supervisor = supervisor;
-        this.application = application;
+     
     }
     public SupervisorRecommendation(){
         
     }
 
 
-    public SupervisorRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor) {
-        this.setup(isApproved,isSigned,requestedChanges,supervisor);
+    public SupervisorRecommendation(String requestedChanges, Supervisor supervisor) {
+        this.setup(requestedChanges,supervisor);
     }
     
-    public void setup(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor){
-        this.isApproved = isApproved;
-        this.isSigned = isSigned;
-        this.requestedChanges = requestedChanges;
-        this.supervisor = supervisor;
-    }
+   
 
     public Long getId() {
         return id;
@@ -88,33 +79,8 @@ public void setup(boolean isApproved, boolean isSigned, String requestedChanges,
         return "applicationSubSystem.SupervisorRecommendation[ id=" + id + " ]";
     }
 
-    /**
-     * @return the isApproved
-     */
-    public boolean isIsApproved() {
-        return isApproved;
-    }
 
-    /**
-     * @param isApproved the isApproved to set
-     */
-    public void setIsApproved(boolean isApproved) {
-        this.isApproved = isApproved;
-    }
-
-    /**
-     * @return the isSigned
-     */
-    public boolean isIsSigned() {
-        return isSigned;
-    }
-
-    /**
-     * @param isSigned the isSigned to set
-     */
-    public void setIsSigned(boolean isSigned) {
-        this.isSigned = isSigned;
-    }
+    
 
     /**
      * @return the requestedChanges

@@ -15,6 +15,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import applicationSubSystem.GrantApplication;
+import applicationSubSystem.SupervisorRecommendation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -120,8 +121,12 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
 
     @Override
     public boolean makeRecommendation(ApplicationStatusEnum status,Supervisor sup, String requestedChanges, GrantApplication application) {
-       // this.applicationFacade.
-     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.applicationFacade.setStatus(application, status);
+        //Used in notify requester
+       // Requester requester = this.applicationFacade.getRequester(application);
+        SupervisorRecommendation superRec=this.applicationFacade.createSupervisorRecommendation(sup, requestedChanges);
+        this.applicationFacade.addSupervisorRecommendation(application, superRec);
+        return true;
     }
 
     public void persist(Object object) {

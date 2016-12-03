@@ -85,12 +85,6 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
         return grantApp;
     }
 
-    @Override
-    public SupervisorRecommendation createSupervisorRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor) {
-        SupervisorRecommendation superRec = new SupervisorRecommendation(isApproved, isSigned, requestedChanges, supervisor);
-        em.persist(superRec);
-        return superRec;
-    }
 
     @Override
     public GrantLimit findGrantLimit(RequesterTypeEnum requesterType) {
@@ -128,6 +122,29 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
         return null;
     }
 
+    @Override
+     public void setStatus(GrantApplication grantApp, ApplicationStatusEnum status){
+         grantApp.setStatus(status);
+     }
+     
+     
+     @Override
+    public Requester getRequester(GrantApplication grantApp){
+      return grantApp.getRequester();
+    }
+    
+    @Override
+    public SupervisorRecommendation createSupervisorRecommendation(Supervisor supervisor,String comments){
+        SupervisorRecommendation superRec = new SupervisorRecommendation(comments,supervisor);
+        return superRec;
+    }
+    
+    @Override
+    public void addSupervisorRecommendation(GrantApplication grantApp,SupervisorRecommendation superRec){
+        grantApp.addSupervisorRecommendation(superRec);
+    }
+
+    
     public void persist(Object object) {
         em.persist(object);
     }
