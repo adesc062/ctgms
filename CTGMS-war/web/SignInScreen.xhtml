@@ -11,21 +11,25 @@
     <h:body>
             <div class="container">
                 <h:form>
-                    <table align="center" cellspacing="5">
+                    <table align="center" cellspacing="15" bgcolor="lightblue">
                         <th colspan="2">
                             <h4>Conference Travel Grant System</h4>
                         </th>
                         <tr>
                             <td><h:outputText value="Username:"></h:outputText></td>
-                            <td><h:inputText id="loginIdIn" value="#{signInBean.loginId}" required="true" 
+                            <td><h:inputText id="loginIdIn" value="#{signInBean.loginId}" 
+                                             style="width: 165px;white-space: normal"
+                                             required="true"
                                              requiredMessage="Please enter your Username"></h:inputText>
                             </td>
                         </tr>
                         
                         <tr>
                             <td><h:outputText value="Password:"></h:outputText></td>
-                            <td><h:inputSecret id="passwordIn" value="#{signInBean.password}" required="true" 
-                                             requiredMessage="Please enter your Password"></h:inputSecret>
+                            <td><h:inputSecret id="passwordIn" value="#{signInBean.password}"
+                                               style="width: 165px;white-space: normal"
+                                               required="true"
+                                               requiredMessage="Please enter your Password"></h:inputSecret>
                             </td>
                         </tr>
                         
@@ -37,6 +41,7 @@
                         </tr>
                     </table>
                     </h:form>
+                <br/>
                 <h:form>
                     <div align="center">
                         <h:commandButton value="Register Requester Account" type="command" action="#{signInBean.registerRequesterAccount()}"/> &nbsp;&nbsp;
