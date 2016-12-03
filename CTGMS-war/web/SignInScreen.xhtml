@@ -9,23 +9,37 @@
         <title>Conference Travel Grant System</title>
     </h:head>
     <h:body>
-        <div class="container">
-            <h4>Conference Travel Grant System</h4>
-            <h:form>
-                <h:outputText value="Username:"></h:outputText>
-                <h:inputText id="loginIdIn" value="#{signInBean.loginId}"></h:inputText>
-                <br/>
-                <h:outputText value="Password:"></h:outputText>
-                <h:inputText id="passwordIn" value="#{signInBean.password}"></h:inputText>
-                <br/>
-                <br/>
-                <h:commandButton value="Sign In" type="command" action="#{signInBean.signIn()}"/>
-                <br/>
-                <br/>
-                <h:commandButton value="Register Requester Account" type="command" action="#{signInBean.registerRequesterAccount()}"/>
-                <h:commandButton value="Register Supervisor Account" type="command" action="#{signInBean.registerSupervisorAccount()}"/>
-            </h:form>
-        </div>
+            <div class="container">
+                <h:form>
+                    <table align="center">
+                        <th colspan="2">
+                            <h4>Conference Travel Grant System</h4>
+                        </th>
+                        <tr>
+                            <td><h:outputText value="Username:"></h:outputText></td>
+                            <td><h:inputText id="loginIdIn" value="#{signInBean.loginId}" required="true" requiredMessage="Please enter your Username"></h:inputText>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><h:outputText value="Password:"></h:outputText></td>
+                            <td><h:inputText id="passwordIn" value="#{signInBean.password}" required="true" requiredMessage="Please enter your Password"></h:inputText>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><h:commandButton value="Sign In" type="command" action="#{signInBean.signIn()}"/>
+                            <br/>
+                            <br/>
+                            </td>
+                        </tr>
+                    </table>
+                    <div align="center">
+                        <h:commandButton value="Register Requester Account" type="command" action="#{signInBean.registerRequesterAccount()}"/> &nbsp;&nbsp;
+                        <h:commandButton value="Register Supervisor Account" type="command" action="#{signInBean.registerSupervisorAccount()}"/>
+                    </div>
+                </h:form>
+            </div>
     </h:body>
 </html>
 
