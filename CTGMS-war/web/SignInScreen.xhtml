@@ -13,10 +13,10 @@
             <h4>Conference Travel Grant System</h4>
             <h:form>
                 <h:outputText value="Username:"></h:outputText>
-                <h:inputText id="loginIdIn" value="#{signInBean.loginId}"></h:inputText>
+                <h:inputText id="loginIdIn" value="#{signInBean.loginId}" required="true" requiredMessage="Please enter your Username"></h:inputText>
                 <br/>
                 <h:outputText value="Password:"></h:outputText>
-                <h:inputText id="passwordIn" value="#{signInBean.password}"></h:inputText>
+                <h:inputText id="passwordIn" value="#{signInBean.password}" required="true" requiredMessage="Please enter your Password"></h:inputText>
                 <br/>
                 <br/>
                 <h:commandButton value="Sign In" type="command" action="#{signInBean.signIn()}"/>
