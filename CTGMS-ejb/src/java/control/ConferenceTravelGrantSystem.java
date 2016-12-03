@@ -41,14 +41,12 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
 
     @PersistenceContext(unitName = "CTGMS-ejbPU")
     private EntityManager em;
-    
-    
-    
+
     User user;
 
     @Override
-    public User findUser(String username, String unhashedPassword) {
-        return userFacade.findUser(username, unhashedPassword);
+    public String getRequesterName(GrantApplication grantApp) {
+        return userFacade.getRequesterName(grantApp);
     }
     
     @Override

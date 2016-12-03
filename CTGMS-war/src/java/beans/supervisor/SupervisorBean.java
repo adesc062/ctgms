@@ -23,18 +23,20 @@ import javax.servlet.http.HttpSession;
 public class SupervisorBean {
     
      @EJB
-    private ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem;
-    
+    private ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem;   
     private ArrayList<GrantApplication> applicationsRequiringAttention;
+    private boolean applicationsInitialized = false;
 
     /**
      * Creates a new instance of SupervisorBean
      */
-    public SupervisorBean() {
-    }
+    public SupervisorBean() {}
     
     public ArrayList<GrantApplication> getApplicationsRequiringAttention() {
-        applicationsRequiringAttention = conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
+        if (!applicationsInitialized) {
+            applicationsRequiringAttention = conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
+            applicationsInitialized = true;
+        }
         return applicationsRequiringAttention;
     }
 

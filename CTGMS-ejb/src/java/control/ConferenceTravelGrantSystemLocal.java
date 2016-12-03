@@ -22,8 +22,8 @@ import userSubsystem.User;
 @Local
 public interface ConferenceTravelGrantSystemLocal {
     
-    public User findUser(String username, String unhashedPassword);
     public User login(String username, String unhashedPassword);
+    public String getRequesterName(GrantApplication grantApp);
     public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, 
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
             String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname);

@@ -5,6 +5,7 @@
  */
 package userSubsystem;
 
+import applicationSubSystem.GrantApplication;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -54,10 +55,21 @@ public class UserFacade implements UserFacadeLocal {
     }
     
     @Override
-    public User findUser(String loginId, String unhashedPassword) {
-        findSalt(loginId);
-        
-        return new User();
+    public String getRequesterName(GrantApplication grantApp) {
+        try {
+            Query query = em.createQuery(
+                    "SELECT r FROM Requester r"
+                    + " JOIN GrantApplication gA"        
+                    + " WHERE gA = :grantApp");
+            query.setParameter("grantApp", grantApp);
+            List resultList = query.getResultList();
+            ArrayList<Requester> requesters = new ArrayList<Requester>();
+            requesters.addAll(resultList);
+            Requester requester = requesters.get(0);
+            return requester.getGivenNames() + " " + requester.getSurname();
+        } catch (Exception e) {
+        }
+        return "failedTogetName";
     }
     
     @Override

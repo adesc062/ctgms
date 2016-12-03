@@ -41,45 +41,63 @@ public class ApplicationReviewBean {
     private double transportationAmount;
     private double accomodationAmount;
     private double mealsAmount;
-    
-    public void accept(){
-        FacesContext context = FacesContext.getCurrentInstance();
-        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
-       makeRecommendation(ApplicationStatusEnum.PENDING_FACULTY_APPROVAL);
+
+    private boolean initialized = false;
+
+    public void accept() {
+        makeRecommendation(ApplicationStatusEnum.PENDING_FACULTY_APPROVAL);
     }
 
-    public void markIncomplete(){
-        FacesContext context = FacesContext.getCurrentInstance();
-        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
+    public void markIncomplete() {
         makeRecommendation(ApplicationStatusEnum.INCOMPLETE);
-        //this.conferenceTravelGrantSystem.markApplicationIncomplete();
     }
-    
-    public void reject(){
-        FacesContext context = FacesContext.getCurrentInstance();
-        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
+
+    public void reject() {
         makeRecommendation(ApplicationStatusEnum.REFUSED);
-        //this.conferenceTravelGrantSystem.rejectApplication();
     }
-    
-    public void makeRecommendation(ApplicationStatusEnum status){
+
+    public void makeRecommendation(ApplicationStatusEnum status) {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        
-        
-        this.conferenceTravelGrantSystem.makeRecommendation(status,(Supervisor)session.getAttribute("Supervisor"), this.comments, this.grantApp);
-    }
-    
-    public ConferenceTravelGrantSystemLocal getConferenceTravelGrantSystem() {
-        return conferenceTravelGrantSystem;
-    }
-
-    public void setConferenceTravelGrantSystem(ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem) {
-        this.conferenceTravelGrantSystem = conferenceTravelGrantSystem;
+        this.conferenceTravelGrantSystem.makeRecommendation(status, (Supervisor) session.getAttribute("Supervisor"), this.comments, this.grantApp);
     }
 
     public String getTitle() {
+        if (!initialized) {
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+            grantApp = (GrantApplication) session.getAttribute("GrantApp");
+
+            //Populate the ui from grantApp object
+            this.conference = grantApp.getConference().getName();
+            this.description = grantApp.getDescription();
+            this.title = grantApp.getTitle();
+            LinkedList<ExpenseEntry> exEnts = this.grantApp.getExpenses();
+            for (int i = 0; i < exEnts.size(); i++) {
+                ExpenseEntry expense = exEnts.get(i);
+                if (null != expense.getExpenseType()) {
+                    switch (expense.getExpenseType()) {
+                        case Meals:
+                            this.setMealsAmount(expense.getExpenseAmount());
+                            break;
+                        case Accomodation:
+                            this.setAccomodationAmount(expense.getExpenseAmount());
+                            break;
+                        case Transportation:
+                            this.setTransportationAmount(expense.getExpenseAmount());
+                            break;
+                        case Registration:
+                            this.setRegistrationAmount(expense.getExpenseAmount());
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            //Requester req = grantApp.getRequester();
+            this.requesterName = conferenceTravelGrantSystem.getRequesterName(grantApp);
+            initialized = true;
+        }
         return title;
     }
 
@@ -150,39 +168,12 @@ public class ApplicationReviewBean {
     public void setMealsAmount(double mealsAmount) {
         this.mealsAmount = mealsAmount;
     }
+
     /**
      * Creates a new instance of ApplicationReviewBean
      */
     public ApplicationReviewBean() {
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        grantApp=(GrantApplication) session.getAttribute("GrantApp");
-        
-        //Populate the ui from grantApp object
-        this.conference= grantApp.getConference().getName();
-        this.description = grantApp.getDescription();
-        this.title= grantApp.getTitle();
-        LinkedList<ExpenseEntry> exEnts = this.grantApp.getExpenses();
-        for(int i=0 ; i< exEnts.size();i++){
-            ExpenseEntry expense=exEnts.get(i);
-            if(expense.getExpenseType() == ExpenseTypeEnum.Meals){
-                this.setAccomodationAmount(expense.getExpenseAmount());
-            }
-            else if(expense.getExpenseType() == ExpenseTypeEnum.Accomodation){
-                this.setAccomodationAmount(expense.getExpenseAmount());
-            }
-            else if(expense.getExpenseType() == ExpenseTypeEnum.Transportation){
-                this.setAccomodationAmount(expense.getExpenseAmount());
-            }
-            else if(expense.getExpenseType() == ExpenseTypeEnum.Registration){
-                this.setAccomodationAmount(expense.getExpenseAmount());
-            }
-        }
-        Requester req = grantApp.getRequester();
-        this.requesterName=  req.getGivenNames()+" "+req.getSurname();
-                
-    
-    
-}
+    }
 
     /**
      * @return the requesterName
