@@ -4,26 +4,28 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-
+    
     <h:head>
         <title>Conference Travel Grant System</title>
     </h:head>
     <h:body>
             <div class="container">
                 <h:form>
-                    <table align="center">
+                    <table align="center" cellspacing="5">
                         <th colspan="2">
                             <h4>Conference Travel Grant System</h4>
                         </th>
                         <tr>
                             <td><h:outputText value="Username:"></h:outputText></td>
-                            <td><h:inputText id="loginIdIn" value="#{signInBean.loginId}" required="true" requiredMessage="Please enter your Username"></h:inputText>
+                            <td><h:inputText id="loginIdIn" value="#{signInBean.loginId}" required="true" 
+                                             requiredMessage="Please enter your Username"></h:inputText>
                             </td>
                         </tr>
                         
                         <tr>
                             <td><h:outputText value="Password:"></h:outputText></td>
-                            <td><h:inputText id="passwordIn" value="#{signInBean.password}" required="true" requiredMessage="Please enter your Password"></h:inputText>
+                            <td><h:inputSecret id="passwordIn" value="#{signInBean.password}" required="true" 
+                                             requiredMessage="Please enter your Password"></h:inputSecret>
                             </td>
                         </tr>
                         
@@ -34,6 +36,8 @@
                             </td>
                         </tr>
                     </table>
+                    </h:form>
+                <h:form>
                     <div align="center">
                         <h:commandButton value="Register Requester Account" type="command" action="#{signInBean.registerRequesterAccount()}"/> &nbsp;&nbsp;
                         <h:commandButton value="Register Supervisor Account" type="command" action="#{signInBean.registerSupervisorAccount()}"/>
