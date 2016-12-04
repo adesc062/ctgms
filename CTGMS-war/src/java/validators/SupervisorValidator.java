@@ -21,24 +21,24 @@ import javax.faces.validator.ValidatorException;
  * @author Alexandre Seguin
  */
 @FacesValidator("supervisorValidator")
-public class SupervisorValidator implements Validator{
-    
+public class SupervisorValidator implements Validator {
+
     @EJB
     private ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem;
-    
+
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-    log("Validating supervisor name -- " + value.toString());
-    String supervisorGivenNames = value.toString();
-    UIInput supervisorSurnameIn = (UIInput) context.getViewRoot().findComponent("supervisorSurnameIn");
-    String supervisorSurname = (String)supervisorSurnameIn.getSubmittedValue();
-    if(this.conferenceTravelGrantSystem.findSupervisorByName(supervisorGivenNames, supervisorSurname) == null){
-      FacesMessage msg =
-              new FacesMessage("Supervisor validation failed.",
-              "Please provide a valid supervisor");
-      msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-    
-      throw new ValidatorException(msg);
+        log("Validating supervisor name -- " + value.toString());
+        String supervisorGivenNames = value.toString();
+        UIInput supervisorSurnameIn = (UIInput) context.getViewRoot().findComponent("supervisorSurnameIn");
+        String supervisorSurname = (String) supervisorSurnameIn.getSubmittedValue();
+        if (this.conferenceTravelGrantSystem.findSupervisorByName(supervisorGivenNames, supervisorSurname) == null) {
+            FacesMessage msg
+                    = new FacesMessage("Supervisor validation failed.",
+                            "Please provide a valid supervisor");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+
+            throw new ValidatorException(msg);
+        }
     }
-  }
 }
