@@ -26,7 +26,8 @@
                 <h:inputText id="surnameIn" required="true" value="#{registerRequesterBean.surname}"></h:inputText>
                 <br/>
                 <h:outputText value="Email:"></h:outputText>
-                <h:inputText id="emailIn" required="true" value="#{registerRequesterBean.email}"></h:inputText>
+                <h:inputText id="emailIn" required="true" value="#{registerRequesterBean.email}">
+                    <f:validateRegex pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$" for="emailIn"></f:validateRegex></h:inputText>
                 <br/>
                 <h:outputText value="Student Number:"></h:outputText>
                 <h:inputText id="studentNumberIn" required="true" value="#{registerRequesterBean.studentNumber}"></h:inputText>

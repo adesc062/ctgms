@@ -18,6 +18,7 @@ public interface UserFacadeLocal {
     public User signIn(String loginId, String unhashedPassword);
     public byte[] findSalt(String loginId); 
     public String getRequesterName(GrantApplication grantApp);
+    public Boolean loginIdExists(String loginId);
     public Supervisor findSupervisorByName(String supervisorGivenNames, String supervisorSurname);
     public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, 
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
