@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -39,7 +40,7 @@ import userSubsystem.UserFacadeLocal;
  *
  * @author user1
  */
-@Stateful
+@Stateless
 public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemLocal {
 
     @EJB
@@ -51,25 +52,19 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     @PersistenceContext(unitName = "CTGMS-ejbPU")
     private EntityManager em;
 
-    //@Resource
-    //private javax.transaction.UserTransaction utx;
-    User user;
-
     @Override
     public String getRequesterName(GrantApplication grantApp) {
         return userFacade.getRequesterName(grantApp);
     }
 
     @Override
-    public User login(String username, String unhashedPassword) {
-        return userFacade.login(username, unhashedPassword);
+    public User signIn(String username, String unhashedPassword) {
+        return userFacade.signIn(username, unhashedPassword);
     }
 
     @Override
-    public ArrayList<GrantApplication> getApplicationsRequiringSupervisorAttention() {
-        //if user NOT supervisor they should not be calling this OR user null
-        //May need to fix this so that it doesnt type cast a user
-        return applicationFacade.getListOfGrantApplicationsNeedingSupervisorApproval((Supervisor) user);
+    public ArrayList<GrantApplication> getApplicationsRequiringSupervisorAttention(Supervisor supervisor) {
+        return applicationFacade.getListOfGrantApplicationsNeedingSupervisorApproval(supervisor);
     }
 
     /**
