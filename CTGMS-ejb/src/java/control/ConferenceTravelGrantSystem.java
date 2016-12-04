@@ -144,4 +144,9 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
         em.persist(object);
     }
 
+    @Override
+    public boolean loginIdExists(String loginId) {
+        return userFacade.loginIdExists(loginId);
+    }
+
 }

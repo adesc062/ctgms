@@ -187,4 +187,21 @@ public class UserFacade implements UserFacadeLocal {
         }
     }
 
+    @Override
+    public Boolean loginIdExists(String loginId) {
+        try {
+            Query query = em.createQuery(
+                    "SELECT s FROM User s"
+                    + " WHERE s.loginId = :loginId");
+            query.setParameter("loginId", loginId);
+            List resultList = query.getResultList();
+            ArrayList<User> users = new ArrayList<User>();
+                    users.addAll(resultList);
+            return !users.isEmpty();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
 }
