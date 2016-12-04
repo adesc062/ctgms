@@ -40,7 +40,7 @@ import userSubsystem.UserFacadeLocal;
  *
  * @author user1
  */
-@Stateless
+@Stateful
 public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemLocal {
 
     @EJB
