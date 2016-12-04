@@ -4,49 +4,31 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-    
+
     <h:head>
         <title>Conference Travel Grant System</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     </h:head>
     <h:body>
-            <div class="container">
-                <h:form>
-                    <table align="center" cellspacing="15" bgcolor="lightblue">
-                        <th colspan="2">
-                            <h4>Conference Travel Grant System</h4>
-                        </th>
-                        <tr>
-                            <td><h:outputText value="Username:"></h:outputText></td>
-                            <td><h:inputText id="loginIdIn" value="#{signInBean.loginId}" 
-                                             style="width: 165px;white-space: normal" required="true"
-                                             requiredMessage="Please enter your Username"></h:inputText>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td><h:outputText value="Password:"></h:outputText></td>
-                            <td><h:inputSecret id="passwordIn" value="#{signInBean.password}"
-                                               style="width: 165px;white-space: normal" required="true"
-                                               requiredMessage="Please enter your Password"></h:inputSecret>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td><h:commandButton value="Sign In" type="command" action="#{signInBean.signIn()}"/>
-                            <br/>
-                            <br/>
-                            </td>
-                        </tr>
-                    </table>
-                    </h:form>
-                <br/>
-                <h:form>
-                    <div align="center">
-                        <h:commandButton value="Register Requester Account" type="command" action="#{signInBean.registerRequesterAccount()}"/> &nbsp;&nbsp;
-                        <h:commandButton value="Register Supervisor Account" type="command" action="#{signInBean.registerSupervisorAccount()}"/>
-                    </div>
-                </h:form>
-            </div>
+        <div class="container">
+            <h4>Conference Travel Grant System</h4>
+            <h:form>
+                <h:outputText value="Username:"></h:outputText>
+                <h:inputText id="loginIdIn" value="#{signInBean.loginId}" 
+                             required="true" requiredMessage="Please enter your Username"></h:inputText>
+                <h:outputText value="Password:"></h:outputText>
+                <h:inputSecret id="passwordIn" value="#{signInBean.password}"
+                               required="true" requiredMessage="Please enter your Password"></h:inputSecret>
+                <br></br>
+                <h:commandButton class="btn waves-effect waves-light" value="Sign In" type="command" action="#{signInBean.signIn()}"/>
+            </h:form>
+            <br/>
+            <h:form>
+                <h:commandButton class="btn waves-effect waves-light" value="Register Requester Account" type="command" action="#{signInBean.registerRequesterAccount()}"/> &nbsp;&nbsp;
+                <h:commandButton class="btn waves-effect waves-light" value="Register Supervisor Account" type="command" action="#{signInBean.registerSupervisorAccount()}"/>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

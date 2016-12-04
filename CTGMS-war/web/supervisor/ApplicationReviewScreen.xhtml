@@ -6,6 +6,8 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Review Application</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     </h:head>
     <h:body>
         <div class="container">
@@ -24,8 +26,7 @@
                 <h:outputText value="#{applicationReviewBean.description}"></h:outputText>
                 <br/>
                 <br/>
-                <h:outputText value="Expense Report"></h:outputText> 
-                <hr/>
+                <h5>Expense Report</h5>
                 <h:outputText value="Registration Expense Amount: "></h:outputText>
                 <h:outputText value="#{applicationReviewBean.registrationAmount}"></h:outputText>
                 <br/>
@@ -42,9 +43,9 @@
                 <h:outputText value="Comments: "></h:outputText>
                 <h:inputTextarea rows="10" value="#{applicationReviewBean.comments}"></h:inputTextarea>
                 <br/>
-                <h:commandButton value="Accept" type="command" actionListener="#{applicationReviewBean.accept()}"/>
-                <h:commandButton value="Mark Incomplete" type="command" actionListener="#{applicationReviewBean.markIncomplete()}"/>
-                <h:commandButton value="Refuse" type="command" actionListener="#{applicationReviewBean.refuse()}"/>
+                <h:commandButton class="btn waves-effect waves-light" value="Accept" type="command" actionListener="#{applicationReviewBean.accept()}"/>
+                <h:commandButton class="btn waves-effect waves-light" value="Mark Incomplete" type="command" actionListener="#{applicationReviewBean.markIncomplete()}"/>
+                <h:commandButton class="btn waves-effect waves-light" value="Refuse" type="command" actionListener="#{applicationReviewBean.refuse()}"/>
             </h:form>
         </div>
     </h:body>

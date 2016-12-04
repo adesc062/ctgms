@@ -6,6 +6,8 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Create Application</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     </h:head>
     <h:body>
         <div class="container">
@@ -19,7 +21,6 @@
                 <br/>
                 <br/>
                 <h5>Expense Report</h5>
-                <hr/>
                 <h:outputText value="Registration Expense Amount:"></h:outputText>
                 <h:inputText id="registrationExpenseAmountIn" value="#{applicationCreationBean.registrationAmount}"></h:inputText>
                 <br/>
@@ -34,7 +35,6 @@
                 <br/>
                 <br/>
                 <h5>Conference</h5>
-                <hr/>
                 <h:outputText value="Conference Name:"></h:outputText>
                 <h:inputText id="conferenceName" value="#{applicationCreationBean.conferenceName}"></h:inputText>
                 <br/>
@@ -48,7 +48,7 @@
                 <h:inputText id="conferenceEndDate" value="#{applicationCreationBean.conferenceEndDateString}"></h:inputText>
                 <br/>
                 <br/>
-                <h:commandButton value="Submit" type="command" actionListener="#{applicationCreationBean.submit()}"/>
+                <h:commandButton class="btn waves-effect waves-light" value="Submit" type="command" actionListener="#{applicationCreationBean.submit()}"/>
             </h:form>      
         </div>
     </h:body>

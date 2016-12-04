@@ -6,6 +6,8 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Conference Travel Grant System</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     </h:head>
     <h:body>
         <div class="container">
@@ -15,10 +17,10 @@
                              var="app">
                     <h:column >#{app.getTitle()}</h:column>
                     <h:column >
-                        <h:commandButton value="Review" action="#{supervisorBean.viewGrant(app)}"></h:commandButton>
+                        <h:commandButton class="btn waves-effect waves-light" value="Review" action="#{supervisorBean.viewGrant(app)}"></h:commandButton>
                     </h:column >
                 </h:dataTable>
-                <h:commandButton value="Logout" type="command" action="#{supervisorBean.logout()}"/>
+                <h:commandButton class="btn waves-effect waves-light" value="Logout" type="command" action="#{supervisorBean.logout()}"/>
             </h:form>
         </div>
     </h:body>

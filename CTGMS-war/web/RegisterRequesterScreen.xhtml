@@ -5,11 +5,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
         <title>Register Requester Account</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     </h:head>
     <h:body>
         <div class="container">
@@ -49,9 +47,9 @@
                 <h:inputText id="bankAccountNumberIn" value="#{registerRequesterBean.bankAccountNumber}"></h:inputText>
                 <br/>
                 <h:outputText value="Student Type:"></h:outputText>
-                <h:selectOneMenu style="" required="true" id="studentType" value="#{registerRequesterBean.studentType}" >
-                    <f:selectItems value="#{registerRequesterBean.studentTypes}"/>
-                </h:selectOneMenu>
+                <h:selectOneRadio value="#{registerRequesterBean.studentType}">
+                    <f:selectItems class="top-kek" value="#{registerRequesterBean.studentTypes}"/>   			
+                </h:selectOneRadio>	
                 <br/>
                 <h:outputText value="Supervisor Given Names:"></h:outputText>
                 <h:inputText id="supervisorGivenNamesIn" value="#{registerRequesterBean.supervisorGivenNames}"></h:inputText>
@@ -60,7 +58,7 @@
                 <h:inputText id="supervisorSurnameIn" value="#{registerRequesterBean.supervisorSurname}"></h:inputText>
                 <br/>
                 <br/>
-                <h:commandButton value="Submit" type="command" actionListener="#{registerRequesterBean.submit()}"/>
+                <h:commandButton class="btn waves-effect waves-light" value="Submit" type="command" actionListener="#{registerRequesterBean.submit()}"/>
             </h:form>
         </div>
     </h:body>
