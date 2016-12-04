@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -33,6 +34,9 @@ public class UserFacade implements UserFacadeLocal {
 
     @PersistenceContext(unitName = "CTGMS-ejbPU")
     private EntityManager em;
+    
+    //@Resource
+    //private javax.transaction.UserTransaction utx;
 
     @Override
     public byte[] findSalt(String loginId) {
@@ -92,10 +96,16 @@ public class UserFacade implements UserFacadeLocal {
     }
 
     @Override
-    public User login(String loginId, String unhashedPassword) {
-        User user = em.find(User.class, loginId);
+    public User signIn(String loginId, String unhashedPassword) {
+        User user = null;
+        try { 
+           user = em.find(User.class, loginId);
+        } catch (Exception e) {
+            
+        }
         if (user != null) {
             try {
+               // utx.begin();
                 //Check password validity
                 byte[] salt = user.getSalt();
                 String saltString = new String(salt, "UTF-8");
@@ -109,7 +119,8 @@ public class UserFacade implements UserFacadeLocal {
                 } else {
                     return null;
                 }
-            } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+            } catch (Exception ex) {
+                System.out.println("TEST");
                 Logger.getLogger(UserFacade.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

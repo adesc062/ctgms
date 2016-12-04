@@ -1,0 +1,276 @@
+[33mcommit dc17aff4424498ac59302ef6a27dee8977b778bc[m
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sun Dec 4 16:03:50 2016 -0500
+
+    Viewing applications fixed.
+
+[33mcommit 9c72e91509f5e6ac6a51e05970ab52dd34878fd8[m
+Merge: ba9d211 fff3630
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sun Dec 4 15:53:06 2016 -0500
+
+    Merge origin/master
+
+[33mcommit ba9d21100739410a93db83cd69ac8590a0e7df5f[m
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sun Dec 4 15:52:28 2016 -0500
+
+    Viewing applications fixed.
+
+[33mcommit fff3630e46c76e61b151f52d412e30b24e891567[m
+Author: Sakib <Sakib@DESKTOP-HNKCAI3>
+Date:   Sun Dec 4 15:45:48 2016 -0500
+
+    Hide password input
+
+[33mcommit 8ede8e55e89a073a67528cebf019e88240a9abcc[m
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sun Dec 4 14:22:13 2016 -0500
+
+    Added CSS.
+
+[33mcommit 1904a36bd779340e61fba34a2882eb51cdb59f5d[m
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sat Dec 3 18:42:50 2016 -0500
+
+    Latest.
+
+[33mcommit b59b3adcd42ee8af38ea8eedc782f8e5d5332790[m
+Merge: 77839db f55df91
+Author: ralle057 <user1@user>
+Date:   Sat Dec 3 17:26:56 2016 -0500
+
+    Merge origin/master
+
+[33mcommit 77839db588da6990aacdf921e6c6b2cc12076cf3[m
+Author: ralle057 <user1@user>
+Date:   Sat Dec 3 17:26:29 2016 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+            CTGMS-ejb/src/java/control/ConferenceTravelGrantSystem.java
+            CTGMS-ejb/src/java/control/ConferenceTravelGrantSystemLocal.java
+
+[33mcommit f55df919393d400388d370d92f3ab1852e26680c[m
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sat Dec 3 17:25:00 2016 -0500
+
+    Viewing applications added.
+
+[33mcommit 877c3a724afabbabc8f29c86426f91dbc02296cf[m
+Merge: 1981b2c 4ef995c
+Author: ralle057 <user1@user>
+Date:   Sat Dec 3 16:40:44 2016 -0500
+
+    Merge origin/master
+
+[33mcommit 4ef995cbd09d7f8c01e2de8d50fe64ac791b1f95[m
+Merge: 128b47e bc7d8fe
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sat Dec 3 16:39:30 2016 -0500
+
+    Merge origin/master
+
+[33mcommit 1981b2cb5c0ec27929bc7b08b82c1700802c11ff[m
+Merge: abb46d2 3ce2e7f
+Author: ralle057 <user1@user>
+Date:   Sat Dec 3 16:39:22 2016 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+            CTGMS-ejb/src/java/control/ConferenceTravelGrantSystem.java
+            CTGMS-ejb/src/java/control/ConferenceTravelGrantSystemLocal.java
+
+[33mcommit 128b47e82326df79b5831c51cc83adc328b01bf7[m
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sat Dec 3 16:39:16 2016 -0500
+
+    Getting applications thingy.
+
+[33mcommit bc7d8feb9c9e7d2350381b195614a58279049d7f[m
+Author: Sakib <Sakib@DESKTOP-HNKCAI3>
+Date:   Sat Dec 3 16:29:03 2016 -0500
+
+    Lets add colours...
+
+[33mcommit 08284f9d9c116b2af436835c3e3cfd1221dde1a7[m
+Merge: 96aec45 3ce2e7f
+Author: Sakib <Sakib@DESKTOP-HNKCAI3>
+Date:   Sat Dec 3 16:24:50 2016 -0500
+
+    Merge origin/master
+
+[33mcommit 96aec45cd323e08770c8298633e1916527ff977d[m
+Author: Sakib <Sakib@DESKTOP-HNKCAI3>
+Date:   Sat Dec 3 16:23:24 2016 -0500
+
+    Lets add colours...
+
+[33mcommit abb46d21ccb00cc62cbc64d45c220361d8ef0edb[m
+Author: ralle057 <user1@user>
+Date:   Sat Dec 3 16:06:01 2016 -0500
+
+    Changed signin to use login rather than finduser as find user was set to return an empty user.
+
+[33mcommit 3ce2e7f0f65beb1ddbf71d9b88098e29f9080eb3[m
+Merge: 6b95527 59dec11
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sat Dec 3 16:04:52 2016 -0500
+
+    Merge origin/master
+
+[33mcommit 6b955277a89cedc2e7549a375d0a05667c04a4c8[m
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sat Dec 3 16:04:37 2016 -0500
+
+    IDK dude
+
+[33mcommit 59dec11c7e7837b0f6ac52d27e1a2dbc9a84742b[m
+Author: Sakib <Sakib@DESKTOP-HNKCAI3>
+Date:   Sat Dec 3 15:59:08 2016 -0500
+
+    Changed the constraint on the buttons. Removed password plaintext.
+
+[33mcommit dfbe5a0cb2f895dcc51f0ae36e1f2d2641ff83f4[m
+Merge: a0dc806 4152b0d
+Author: Sakib <Sakib@DESKTOP-HNKCAI3>
+Date:   Sat Dec 3 15:57:07 2016 -0500
+
+    Merge origin/master
+
+[33mcommit a0dc80625c37fb27c4d1e736196648e1c93bf087[m
+Author: Sakib <Sakib@DESKTOP-HNKCAI3>
+Date:   Sat Dec 3 15:55:21 2016 -0500
+
+    Changed the constraint on the buttons. Removed password plaintext.
+
+[33mcommit 4152b0d51b698900d43d6a74c57f7a7c2639bad2[m
+Merge: b9dd7bf d15f1c2
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sat Dec 3 15:30:05 2016 -0500
+
+    Merge origin/master
+
+[33mcommit b9dd7bf465340bfbee9609c96e6ea5c81d7f5a35[m
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Sat Dec 3 15:29:49 2016 -0500
+
+    Create applications implemented.
+
+[33mcommit d15f1c2eebedde1fb5f40b151e7b8e37b3d3e665[m
+Author: Sakib <Sakib@DESKTOP-HNKCAI3>
+Date:   Sat Dec 3 15:28:20 2016 -0500
+
+    Sign in screen UI change
+
+[33mcommit 92d0eea11363d7bba44b58c007dea24eccc9c7ec[m
+Author: Sakib <Sakib@192.168.0.13>
+Date:   Sat Dec 3 14:47:58 2016 -0500
+
+    Added required for the Sign in screen
+
+[33mcommit 84153417122f802b3c12e5fabe43341041642c08[m
+Merge: b07184e 3f32671
+Author: ralle057 <user1@user>
+Date:   Sat Dec 3 14:45:22 2016 -0500
+
+    Merge origin/master
+
+[33mcommit b07184e6544a4961e20f926c740a06d3f5da024b[m
+Author: ralle057 <user1@user>
+Date:   Sat Dec 3 14:44:28 2016 -0500
+
+    Changed signin to use login rather than finduser as find user was set to return an empty user.
+
+[33mcommit 3f326712d50cb50abaccaffcd1639002a2df85cf[m
+Author: Alexis Deschamps <descalexis@gmail.com>
+Date:   Wed Nov 30 22:57:20 2016 -0500
+
+    OK, I added authentication filters, log in, and log out functionality
+
+[33mcommit c9d3085c1572ceeb689b279b3bdf603e40b2609b[m
+Author: ralle057 <user1@user>
+Date:   Tue Nov 29 14:00:54 2016 -0500
+
+    Changed signin to use login rather than finduser as find user was set to return an empty user.
+
+[33mcommit 1202e23194e842edcdb7494b8570d9e0090443ac[m
+Author: alexseguin <segualex@gmail.com>
+Date:   Mon Nov 28 21:10:52 2016 -0500
+
+    Supervisor, Requester, ReviewApp [Screens & Beans]
+
+[33mcommit 2b047ef68f2ca2ef4978ab64658063191073549d[m
+Author: ralle057 <user1@user>
+Date:   Mon Nov 28 20:42:38 2016 -0500
+
+    Wired up requester creation
+
+[33mcommit 3a32fcbc4362fa67a4efae664fa7726275eaee44[m
+Author: ralle057 <rallen4@live.ca>
+Date:   Mon Nov 28 20:21:44 2016 -0500
+
+    Added functionality to retrieve the pending applications
+
+[33mcommit 4b57bcce5c39d82306c359ce69797a2dd2c3a39c[m
+Author: ralle057 <user1@user>
+Date:   Mon Nov 28 16:33:03 2016 -0500
+
+    Application subsystem untested implementation
+
+[33mcommit e2f743afcd9e20bc18c1e3ef1012bfa1678d9745[m
+Author: ralle057 <user1@user>
+Date:   Mon Nov 28 16:29:13 2016 -0500
+
+    Application subsystem untested implementation
+
+[33mcommit 71b4df5a5d3199d4e07d7143e2575a4ba18f5756[m
+Merge: 53d0e31 6fedc99
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Mon Nov 28 16:07:42 2016 -0500
+
+    Merge origin/master
+
+[33mcommit 53d0e31757b6d7079156bc927bcd472bb8ab39ef[m
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Mon Nov 28 16:07:00 2016 -0500
+
+    Added functionality for user subsystem.
+
+[33mcommit 6fedc997d51d5522edb51be90ceed5c1d89888c5[m
+Merge: 9d4a5df bde0d58
+Author: ralle057 <user1@user>
+Date:   Mon Nov 28 15:19:03 2016 -0500
+
+    Merge origin/master
+
+[33mcommit 9d4a5df66889fa7ad2a9579a08b401ad510fd3be[m
+Author: ralle057 <user1@user>
+Date:   Mon Nov 28 15:18:43 2016 -0500
+
+    Application subsystem untested implementation
+
+[33mcommit bde0d5863593f604dd215a5f921455cdee17666a[m
+Author: adesc062 <adesc062@1850-0110S035.uottawa.o.univ>
+Date:   Mon Nov 28 15:15:58 2016 -0500
+
+    Added functionality.
+
+[33mcommit 9a54417ca64bc0574b1850c7fc44c459e1250645[m
+Merge: 293322b 9fbb4b3
+Author: ralle057 <user1@user>
+Date:   Mon Nov 28 13:26:25 2016 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+            CTGMS-ejb/src/java/applicationSubSystem/ApplicationStatusEnum.java
+            CTGMS-ejb/src/java/applicationSubSystem/GrantApplication.java
+
+[33mcommit 293322bc53ad8aeaccef2cef2c81d186a58abf78[m
+Author: ralle057 <user1@user>
+Date:   Mon Nov 28 13:24:24 2016 -0500
+
+    A

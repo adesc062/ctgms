@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -81,7 +82,6 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
         return grantApp;
     }
 
-
     @Override
     public GrantLimit findGrantLimit(RequesterTypeEnum requesterType) {
         try {
@@ -98,19 +98,28 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
 
     @Override
     public ArrayList<GrantApplication> getListOfGrantApplicationsNeedingSupervisorApproval(Supervisor supervisor) {
+        //Supervisor dbSupervisor = em.find(Supervisor.class, supervisor.getLoginId());       
         try {
             //Query query = em.createQuery(
             //        "SELECT gA FROM GrantApplication gA"
             //        + " JOIN Requester r ON gA.requester = r"
-            //       + " WHERE r.supervisor = :supervisor");
+            //        + " WHERE r.supervisor = :supervisor");
             Query query = em.createQuery(
-                    "SELECT gA FROM GrantApplication gA");
-            //query.setParameter("supervisor", supervisor);
+                    "SELECT gA FROM GrantApplication gA"
+                    + " JOIN Requester r ON gA.requester = r"
+                    + " WHERE r.supervisor = :supervisor"
+            );
+            query.setParameter("supervisor", supervisor);
             List resultList = query.getResultList();
             // ArrayList<Requester> = supervisor.getR
             ArrayList<GrantApplication> grantApplications = new ArrayList<>();
+            ArrayList<GrantApplication> curatedGrantApplications = new ArrayList<>();
             grantApplications.addAll(resultList);
-            return grantApplications;
+            for(GrantApplication grantApp: grantApplications) {
+                if (grantApp.getApplicationStatus() == ApplicationStatusEnum.PENDING_SUPERVISOR_APPROVAL)
+                    curatedGrantApplications.add(grantApp);
+            }            
+            return curatedGrantApplications;
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -118,30 +127,28 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
     }
 
     @Override
-     public void setStatus(GrantApplication grantApp, ApplicationStatusEnum status){
-         grantApp.setStatus(status);
-         //em.merge(grantApp);
-     }
-     
-     
-     @Override
-    public Requester getRequester(GrantApplication grantApp){
-      return grantApp.getRequester();
+    public void setStatus(GrantApplication grantApp, ApplicationStatusEnum status) {
+        GrantApplication dbGrantApp = em.find(GrantApplication.class, grantApp.getId());
+        dbGrantApp.setStatus(status);
     }
-    
+
     @Override
-    public SupervisorRecommendation createSupervisorRecommendation(Supervisor supervisor,String comments){
-        SupervisorRecommendation superRec = new SupervisorRecommendation(comments,supervisor);
+    public Requester getRequester(GrantApplication grantApp) {
+        return grantApp.getRequester();
+    }
+
+    @Override
+    public SupervisorRecommendation createSupervisorRecommendation(Supervisor supervisor, String comments) {
+        SupervisorRecommendation superRec = new SupervisorRecommendation(comments, supervisor);
         em.persist(superRec);
         return superRec;
     }
-    
+
     @Override
-    public void addSupervisorRecommendation(GrantApplication grantApp,SupervisorRecommendation superRec){
+    public void addSupervisorRecommendation(GrantApplication grantApp, SupervisorRecommendation superRec) {
         grantApp.addSupervisorRecommendation(superRec);
     }
 
-    
     public void persist(Object object) {
         em.persist(object);
     }

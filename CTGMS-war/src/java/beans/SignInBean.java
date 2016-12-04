@@ -38,7 +38,7 @@ public class SignInBean {
     }
 
     public String signIn() {
-        User user = conferenceTravelGrantSystem.login(loginId, password);
+        User user = conferenceTravelGrantSystem.signIn(loginId, password);
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.setAttribute("Requester", null);
         session.setAttribute("Supervisor", null);
@@ -49,9 +49,7 @@ public class SignInBean {
             session.setAttribute("Supervisor", user);
             return "supervisor/SupervisorScreen?faces-redirect=true";
         }
-        return "signin";
-        //for testing the list return
-        //conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
+        return null;
     }
 
     public String registerRequesterAccount() {

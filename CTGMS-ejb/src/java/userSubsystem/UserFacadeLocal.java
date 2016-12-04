@@ -15,7 +15,7 @@ import javax.ejb.Local;
 @Local
 public interface UserFacadeLocal {
        
-    public User login(String loginId, String unhashedPassword);
+    public User signIn(String loginId, String unhashedPassword);
     public byte[] findSalt(String loginId); 
     public String getRequesterName(GrantApplication grantApp);
     public Supervisor findSupervisorByName(String supervisorGivenNames, String supervisorSurname);
