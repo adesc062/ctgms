@@ -24,6 +24,8 @@ public interface ConferenceTravelGrantSystemLocal {
     
     public User signIn(String username, String unhashedPassword);
     public String getRequesterName(GrantApplication grantApp);
+    public Supervisor findSupervisorByName(String supervisorGivenNames, String supervisorSurname);
+    public boolean loginIdExists(String loginId);
     public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, 
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
             String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname);

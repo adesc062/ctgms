@@ -18,18 +18,7 @@ import applicationSubSystem.GrantApplication;
 import applicationSubSystem.SupervisorRecommendation;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
 import userSubsystem.Requester;
 import userSubsystem.RequesterTypeEnum;
 import userSubsystem.Supervisor;
@@ -55,6 +44,11 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     @Override
     public String getRequesterName(GrantApplication grantApp) {
         return userFacade.getRequesterName(grantApp);
+    }
+
+    @Override
+    public Supervisor findSupervisorByName(String supervisorGivenNames, String supervisorSurname){
+        return userFacade.findSupervisorByName(supervisorGivenNames, supervisorSurname);
     }
 
     @Override
@@ -147,6 +141,11 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
 
     public void persist(Object object) {
         em.persist(object);
+    }
+
+    @Override
+    public boolean loginIdExists(String loginId) {
+        return userFacade.loginIdExists(loginId);
     }
 
 }

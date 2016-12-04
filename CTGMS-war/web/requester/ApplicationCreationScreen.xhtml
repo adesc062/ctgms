@@ -14,38 +14,45 @@
             <h4>Create Application</h4>
             <h:form>
                 <h:outputText value="Application Title:"></h:outputText>
-                <h:inputText id="titleIn" value="#{applicationCreationBean.title}"></h:inputText>
+                <h:inputText id="titleIn" required="true" value="#{applicationCreationBean.title}"></h:inputText>
                 <br/>
                 <h:outputText value="Description:"></h:outputText>
-                <h:inputText id="descriptionIn" value="#{applicationCreationBean.description}"></h:inputText>
+                <h:inputText id="descriptionIn" required="true" value="#{applicationCreationBean.description}"></h:inputText>
                 <br/>
                 <br/>
                 <h5>Expense Report</h5>
                 <h:outputText value="Registration Expense Amount:"></h:outputText>
-                <h:inputText id="registrationExpenseAmountIn" value="#{applicationCreationBean.registrationAmount}"></h:inputText>
+                <h:inputText id="registrationExpenseAmountIn" required="true" value="#{applicationCreationBean.registrationAmount}">
+                    <f:validateRegex pattern="\\d+" for="registrationExpenseAmountIn"></f:validateRegex></h:inputText>
                 <br/>
                 <h:outputText value="Transportation Expense Amount:"></h:outputText>
-                <h:inputText id="transportationExpenseAmountIn" value="#{applicationCreationBean.transportationAmount}"></h:inputText>
+                <h:inputText id="transportationExpenseAmountIn" required="true" value="#{applicationCreationBean.transportationAmount}">
+                    <f:validateRegex pattern="\\d+" for="transportationExpenseAmountIn"></f:validateRegex></h:inputText>
                 <br/>
                 <h:outputText value="Accomodation Expense Amount:"></h:outputText>
-                <h:inputText id="accomodationExpenseAmountIn" value="#{applicationCreationBean.accomodationAmount}"></h:inputText>
+                <h:inputText id="accomodationExpenseAmountIn" required="true" value="#{applicationCreationBean.accomodationAmount}">
+                    <f:validateRegex pattern="\\d+" for="accomodationExpenseAmountIn"></f:validateRegex></h:inputText>
                 <br/>
                 <h:outputText value="Meals Expense Amount:"></h:outputText>
-                <h:inputText id="mealsExpenseAmountIn" value="#{applicationCreationBean.mealsAmount}"></h:inputText>
+                <h:inputText id="mealsExpenseAmountIn" required="true" value="#{applicationCreationBean.mealsAmount}">
+                    <f:validateRegex pattern="\\d+" for="mealsExpenseAmountIn"></f:validateRegex></h:inputText>
                 <br/>
                 <br/>
                 <h5>Conference</h5>
                 <h:outputText value="Conference Name:"></h:outputText>
-                <h:inputText id="conferenceName" value="#{applicationCreationBean.conferenceName}"></h:inputText>
+                <h:inputText id="conferenceName" required="true" value="#{applicationCreationBean.conferenceName}"></h:inputText>
                 <br/>
                 <h:outputText value="Conference Website:"></h:outputText>
-                <h:inputText id="conferenceWebsite" value="#{applicationCreationBean.conferenceWebsite}"></h:inputText>
+                <h:inputText id="conferenceWebsite" required="true" value="#{applicationCreationBean.conferenceWebsite}"></h:inputText>
                 <br/>
                 <h:outputText value="Conference Start Date:"></h:outputText>
-                <h:inputText id="conferenceStartDate" value="#{applicationCreationBean.conferenceStartDateString}"></h:inputText>
+                <h:inputText id="conferenceStartDate" required="true" value="#{applicationCreationBean.conferenceStartDateString}">
+                    <f:validateRegex pattern="\\d{4}-\\d{2}-\\d{2}" for="conferenceStartDate"></f:validateRegex></h:inputText>
                 <br/>
                 <h:outputText value="Conference End Date:"></h:outputText>
-                <h:inputText id="conferenceEndDate" value="#{applicationCreationBean.conferenceEndDateString}"></h:inputText>
+                <h:inputText id="conferenceEndDate" required="true" value="#{applicationCreationBean.conferenceEndDateString}">
+                    <f:validateRegex pattern="\\d{4}-\\d{2}-\\d{2}" for="conferenceEndDate"></f:validateRegex></h:inputText>
+                
                 <br/>
                 <br/>
                 <h:commandButton class="btn waves-effect waves-light" value="Submit" type="command" actionListener="#{applicationCreationBean.submit()}"/>

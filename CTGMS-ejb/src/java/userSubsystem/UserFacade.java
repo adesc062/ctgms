@@ -45,9 +45,7 @@ public class UserFacade implements UserFacadeLocal {
 
     @PersistenceContext(unitName = "CTGMS-ejbPU")
     private EntityManager em;
-
-    //@Resource
-    //private javax.transaction.UserTransaction utx;
+    
     @Override
     public byte[] findSalt(String loginId) {
         try {
@@ -136,7 +134,7 @@ public class UserFacade implements UserFacadeLocal {
         }
         if (user != null) {
             try {
-                // utx.begin();
+    
                 //Check password validity
                 byte[] salt = user.getSalt();
                 String saltString = new String(salt, "UTF-8");
@@ -222,6 +220,22 @@ public class UserFacade implements UserFacadeLocal {
     }
 
     @Override
+    public Boolean loginIdExists(String loginId) {
+        try {
+            Query query = em.createQuery(
+                    "SELECT s FROM User s"
+                    + " WHERE s.loginId = :loginId");
+            query.setParameter("loginId", loginId);
+            List resultList = query.getResultList();
+            ArrayList<User> users = new ArrayList<User>();
+                    users.addAll(resultList);
+            return !users.isEmpty();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
     public boolean emailUser(String recipentEmail, String subject, String text) {
 
         String from = "ctgsteamone2016@gmail.com";
