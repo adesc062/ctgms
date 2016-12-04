@@ -123,15 +123,25 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     }
 
     @Override
-    public boolean makeRecommendation(ApplicationStatusEnum status, Supervisor sup, String requestedChanges, GrantApplication application) {
-        //utx.begin();
+    public boolean makeRecommendation(ApplicationStatusEnum status, Supervisor supervisor, String requestedChanges, GrantApplication application) {
         applicationFacade.setStatus(application, status);
-        //Used in notify requester
-        //Requester requester = this.applicationFacade.getRequester(application);
-        SupervisorRecommendation superRec = this.applicationFacade.createSupervisorRecommendation(sup, requestedChanges);
+        SupervisorRecommendation superRec = this.applicationFacade.createSupervisorRecommendation(supervisor, requestedChanges);
         applicationFacade.addSupervisorRecommendation(application, superRec);
-        //utx.commit();
-
+        String requesterEmail = userFacade.getRequesterEmail(application);
+        String subject = "One of your applications has been marked as ";
+        switch (status) {
+            case INCOMPLETE:
+                subject = subject + "incomplete";
+            case PENDING_FACULTY_APPROVAL:
+                subject = subject + "approved";
+            case REFUSED:
+                subject = subject + "refused";
+            default:
+                break;             
+        }      
+        String text = "View your application by signing into the Conference Travel Grant System. Your supervisor left the following comments: ";
+        text = text + requestedChanges;
+        userFacade.emailUser(requesterEmail, subject, text);
         return true;
     }
 
