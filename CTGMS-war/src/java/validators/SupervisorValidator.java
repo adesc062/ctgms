@@ -32,7 +32,7 @@ public class SupervisorValidator implements Validator{
     String supervisorGivenNames = value.toString();
     UIInput supervisorSurnameIn = (UIInput) context.getViewRoot().findComponent("supervisorSurnameIn");
     String supervisorSurname = (String)supervisorSurnameIn.getSubmittedValue();
-    if(this.conferenceTravelGrantSystem.findSupervisorByName(supervisorGivenNames, supervisorSurname).equals(null)){
+    if(this.conferenceTravelGrantSystem.findSupervisorByName(supervisorGivenNames, supervisorSurname) == null){
       FacesMessage msg =
               new FacesMessage("Supervisor validation failed.",
               "Please provide a valid supervisor");
