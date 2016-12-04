@@ -35,9 +35,6 @@ public class UserFacade implements UserFacadeLocal {
     @PersistenceContext(unitName = "CTGMS-ejbPU")
     private EntityManager em;
     
-    //@Resource
-    //private javax.transaction.UserTransaction utx;
-
     @Override
     public byte[] findSalt(String loginId) {
         try {
@@ -105,7 +102,7 @@ public class UserFacade implements UserFacadeLocal {
         }
         if (user != null) {
             try {
-               // utx.begin();
+    
                 //Check password validity
                 byte[] salt = user.getSalt();
                 String saltString = new String(salt, "UTF-8");

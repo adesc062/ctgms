@@ -56,7 +56,7 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     public String getRequesterName(GrantApplication grantApp) {
         return userFacade.getRequesterName(grantApp);
     }
-    
+
     @Override
     public Supervisor findSupervisorByName(String supervisorGivenNames, String supervisorSurname){
         return userFacade.findSupervisorByName(supervisorGivenNames, supervisorSurname);

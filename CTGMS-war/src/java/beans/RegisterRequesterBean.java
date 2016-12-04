@@ -50,10 +50,11 @@ public class RegisterRequesterBean {
     public RegisterRequesterBean() {
     }
 
-    public void submit() {
+    public String submit() {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         this.conferenceTravelGrantSystem.addUser(loginId, password, givenNames, surname, email, studentNumber, academicUnit, program, sessionNumber, thesisTopic, bankAccountNumber, studentType, supervisorGivenNames, supervisorSurname);
+        return "/SignInScreen?faces-redirect=true";
     }
 
     /**
