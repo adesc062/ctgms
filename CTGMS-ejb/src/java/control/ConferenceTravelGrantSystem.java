@@ -58,6 +58,11 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     }
 
     @Override
+    public Supervisor findSupervisorByName(String supervisorGivenNames, String supervisorSurname){
+        return userFacade.findSupervisorByName(supervisorGivenNames, supervisorSurname);
+    }
+
+    @Override
     public User signIn(String username, String unhashedPassword) {
         return userFacade.signIn(username, unhashedPassword);
     }

@@ -41,10 +41,11 @@ public class RegisterSupervisorBean {
     public RegisterSupervisorBean() {
     }
 
-    public void submit() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
+    public String submit() {
+       // FacesContext context = FacesContext.getCurrentInstance();
+        //ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         this.conferenceTravelGrantSystem.addUser(loginId, password, givenNames, surname, email, employeeNumber);
+        return "/SignInScreen?faces-redirect=true";
     }  
 
     /**

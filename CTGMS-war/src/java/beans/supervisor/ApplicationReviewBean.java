@@ -63,7 +63,7 @@ public class ApplicationReviewBean {
         this.conferenceTravelGrantSystem.makeRecommendation(status, (Supervisor) session.getAttribute("Supervisor"),
                 this.comments, (GrantApplication) session.getAttribute("GrantApp"));
         //return to view page
-        return "supervisor/SupervisorScreen?faces-redirect=true";
+        return "/supervisor/SupervisorScreen?faces-redirect=true";
     }
 
     public String getTitle() {

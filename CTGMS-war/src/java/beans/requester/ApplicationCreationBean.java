@@ -97,7 +97,7 @@ public class ApplicationCreationBean {
         this.description = description;
     }
 
-    public void submit() {
+    public String submit() {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         try {
@@ -111,6 +111,9 @@ public class ApplicationCreationBean {
         this.conferenceTravelGrantSystem.createGrantApplication(title, description, status, requester,
                 conferenceName, conferenceWebsite, conferenceStartDate, conferenceEndDate,
                 registrationAmount, transportationAmount, accomodationAmount, mealsAmount);
+        
+        //Redirect to main page
+        return "/requester/RequesterScreen?faces-redirect=true";
     }
     
     /**
