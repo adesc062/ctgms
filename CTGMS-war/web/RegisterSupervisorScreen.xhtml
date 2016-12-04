@@ -6,6 +6,8 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Register Supervisor Account</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     </h:head>
     <h:body>
         <div class="container">
@@ -15,7 +17,7 @@
                 <h:inputText id="loginIdIn" value="#{registerSupervisorBean.loginId}"></h:inputText>
                 <br/>
                 <h:outputText value="Password:"></h:outputText>
-                <h:inputText id="passwordIn" value="#{registerSupervisorBean.password}"></h:inputText>
+                <h:inputSecret id="passwordIn" value="#{registerSupervisorBean.password}"></h:inputSecret>
                 <br/>
                 <h:outputText value="Given Names:"></h:outputText>
                 <h:inputText id="givenNamesIn" value="#{registerSupervisorBean.givenNames}"></h:inputText>
@@ -30,7 +32,7 @@
                 <h:inputText id="employeeNumberIn" value="#{registerSupervisorBean.employeeNumber}"></h:inputText>
                 <br/>
                 <br/>
-                <h:commandButton value="Submit" type="command" actionListener="#{registerSupervisorBean.submit()}"/>
+                <h:commandButton class="btn waves-effect waves-light" value="Submit" type="command" actionListener="#{registerSupervisorBean.submit()}"/>
             </h:form>
         </div>
     </h:body>

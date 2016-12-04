@@ -6,6 +6,8 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Register Requester Account</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     </h:head>
     <h:body>
         <div class="container">
@@ -15,7 +17,7 @@
                 <h:inputText id="loginIdIn" value="#{registerRequesterBean.loginId}"></h:inputText>
                 <br/>
                 <h:outputText value="Password:"></h:outputText>
-                <h:inputText id="passwordIn" value="#{registerRequesterBean.password}"></h:inputText>
+                <h:inputSecret id="passwordIn" value="#{registerRequesterBean.password}"></h:inputSecret>
                 <br/>
                 <h:outputText value="Given Names:"></h:outputText>
                 <h:inputText id="givenNamesIn" value="#{registerRequesterBean.givenNames}"></h:inputText>
@@ -45,9 +47,9 @@
                 <h:inputText id="bankAccountNumberIn" value="#{registerRequesterBean.bankAccountNumber}"></h:inputText>
                 <br/>
                 <h:outputText value="Student Type:"></h:outputText>
-                <h:selectOneMenu class="remove-all-styles other-classe another-class" id="studentType" value="#{registerRequesterBean.studentType}" >
-                    <f:selectItems class="remove-all-styles other-classe another-class" value="#{registerRequesterBean.studentTypes}"/>
-                </h:selectOneMenu>
+                <h:selectOneRadio value="#{registerRequesterBean.studentType}">
+                    <f:selectItems class="top-kek" value="#{registerRequesterBean.studentTypes}"/>   			
+                </h:selectOneRadio>	
                 <br/>
                 <h:outputText value="Supervisor Given Names:"></h:outputText>
                 <h:inputText id="supervisorGivenNamesIn" value="#{registerRequesterBean.supervisorGivenNames}"></h:inputText>
@@ -56,7 +58,7 @@
                 <h:inputText id="supervisorSurnameIn" value="#{registerRequesterBean.supervisorSurname}"></h:inputText>
                 <br/>
                 <br/>
-                <h:commandButton value="Submit" type="command" actionListener="#{registerRequesterBean.submit()}"/>
+                <h:commandButton class="btn waves-effect waves-light" value="Submit" type="command" actionListener="#{registerRequesterBean.submit()}"/>
             </h:form>
         </div>
     </h:body>

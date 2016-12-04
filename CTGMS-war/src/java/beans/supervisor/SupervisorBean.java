@@ -13,6 +13,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import userSubsystem.Supervisor;
 
 /**
  *
@@ -33,8 +34,10 @@ public class SupervisorBean {
     public SupervisorBean() {}
     
     public ArrayList<GrantApplication> getApplicationsRequiringAttention() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Supervisor supervisor = (Supervisor) session.getAttribute("Supervisor");
         if (!applicationsInitialized) {
-            applicationsRequiringAttention = conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
+            applicationsRequiringAttention = conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention(supervisor);
             applicationsInitialized = true;
         }
         return applicationsRequiringAttention;

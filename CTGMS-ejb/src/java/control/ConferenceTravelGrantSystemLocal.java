@@ -22,7 +22,7 @@ import userSubsystem.User;
 @Local
 public interface ConferenceTravelGrantSystemLocal {
     
-    public User login(String username, String unhashedPassword);
+    public User signIn(String username, String unhashedPassword);
     public String getRequesterName(GrantApplication grantApp);
     public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email, 
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
@@ -32,5 +32,5 @@ public interface ConferenceTravelGrantSystemLocal {
             String conferenceName, String conferenceWebsite, Date conferenceStartDate, Date conferenceEndDate,
             double registrationAmount, double transportationAmount, double accomodationAmount, double mealsAmount);
     public boolean makeRecommendation(ApplicationStatusEnum status,Supervisor sup, String requestedChanges, GrantApplication application);
-    public ArrayList<GrantApplication> getApplicationsRequiringSupervisorAttention();
+    public ArrayList<GrantApplication> getApplicationsRequiringSupervisorAttention(Supervisor supervisor);
 }

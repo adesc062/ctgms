@@ -26,6 +26,8 @@ import userSubsystem.Requester;
 @Table(name = "GrantApplications7972857")
 public class GrantApplication implements Serializable {
 
+    
+    
     private String title;
     private Conference conference;
     @OneToMany(cascade = CascadeType.PERSIST)
@@ -53,7 +55,7 @@ public class GrantApplication implements Serializable {
         this.conference = conference;
         // this.expenses = expenses; //this will be done through setter. See sequence diagram
         this.description = description;
-        this.applicationStatus = applicationStatus.INCOMPLETE;
+        this.applicationStatus = applicationStatus.PENDING_SUPERVISOR_APPROVAL;
         this.setRequester(requester);
         //this.requester= requester;done later in sequence
         this.setExpenses(new LinkedList<>());
