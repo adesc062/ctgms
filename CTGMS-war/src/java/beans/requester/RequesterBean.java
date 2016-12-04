@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package beans;
+package beans.requester;
 
 import control.ConferenceTravelGrantSystemLocal;
 import java.util.ResourceBundle;
@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,16 +38,14 @@ public class RequesterBean {
     public RequesterBean() {
     }
     
-    public void createApplication() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
-        //this.conferenceTravelGrantSystem.createApplication();
+    public String createApplication() {
+        return "ApplicationCreationScreen?faces-redirect=true";
     }
     
-    public void logout() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
-        //this.conferenceTravelGrantSystem.logout();
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.setAttribute("Requester", null);
+        return "/SignInScreen?faces-redirect=true";
     }
     
 }

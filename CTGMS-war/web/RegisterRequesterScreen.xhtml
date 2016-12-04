@@ -6,57 +6,61 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Register Requester Account</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     </h:head>
     <h:body>
-        <h3>Register Requester Account</h3>
-        <h:form>
-            <h:outputText value="Username:"></h:outputText>
-            <h:inputText id="loginIdIn" value="#{registerRequesterBean.loginId}"></h:inputText>
-            <br/>
-            <h:outputText value="Password:"></h:outputText>
-            <h:inputText id="passwordIn" value="#{registerRequesterBean.password}"></h:inputText>
-            <br/>
-            <h:outputText value="Given Names:"></h:outputText>
-            <h:inputText id="givenNamesIn" value="#{registerRequesterBean.givenNames}"></h:inputText>
-            <br/>
-            <h:outputText value="Surname:"></h:outputText>
-            <h:inputText id="surnameIn" value="#{registerRequesterBean.surname}"></h:inputText>
-            <br/>
-            <h:outputText value="Email:"></h:outputText>
-            <h:inputText id="emailIn" value="#{registerRequesterBean.email}"></h:inputText>
-            <br/>
-            <h:outputText value="Student Number:"></h:outputText>
-            <h:inputText id="studentNumberIn" value="#{registerRequesterBean.studentNumber}"></h:inputText>
-            <br/>
-            <h:outputText value="Academic Unit:"></h:outputText>
-            <h:inputText id="academicUnitIn" value="#{registerRequesterBean.academicUnit}"></h:inputText>
-            <br/>
-            <h:outputText value="Program:"></h:outputText>
-            <h:inputText id="programIn" value="#{registerRequesterBean.program}"></h:inputText>
-            <br/>
-            <h:outputText value="Session Number:"></h:outputText>
-            <h:inputText id="sessionNumberIn" value="#{registerRequesterBean.sessionNumber}"></h:inputText>
-            <br/>
-            <h:outputText value="Thesis Topic:"></h:outputText>
-            <h:inputText id="thesisTopicIn" value="#{registerRequesterBean.thesisTopic}"></h:inputText>
-            <br/>
-            <h:outputText value="Bank Account Number:"></h:outputText>
-            <h:inputText id="bankAccountNumberIn" value="#{registerRequesterBean.bankAccountNumber}"></h:inputText>
-            <br/>
-            <h:outputText value="Student Type:"></h:outputText>
-            <h:selectOneMenu id="studentType" value="#{registerRequesterBean.studentType}" >
-                <f:selectItems value="#{registerRequesterBean.studentTypes}"/>
-            </h:selectOneMenu>
-            <br/>
-            <h:outputText value="Supervisor Given Names:"></h:outputText>
-            <h:inputText id="supervisorGivenNamesIn" value="#{registerRequesterBean.supervisorGivenNames}"></h:inputText>
-            <br/>
-            <h:outputText value="Supervisor Surname:"></h:outputText>
-            <h:inputText id="supervisorSurnameIn" value="#{registerRequesterBean.supervisorSurname}"></h:inputText>
-            <br/>
-            <br/>
-            <h:commandButton value="Submit" type="command" actionListener="#{registerRequesterBean.submit()}"/>
-        </h:form>
+        <div class="container">
+            <h4>Register Requester Account</h4>
+            <h:form>
+                <h:outputText value="Username:"></h:outputText>
+                <h:inputText id="loginIdIn" value="#{registerRequesterBean.loginId}"></h:inputText>
+                <br/>
+                <h:outputText value="Password:"></h:outputText>
+                <h:inputSecret id="passwordIn" value="#{registerRequesterBean.password}"></h:inputSecret>
+                <br/>
+                <h:outputText value="Given Names:"></h:outputText>
+                <h:inputText id="givenNamesIn" value="#{registerRequesterBean.givenNames}"></h:inputText>
+                <br/>
+                <h:outputText value="Surname:"></h:outputText>
+                <h:inputText id="surnameIn" value="#{registerRequesterBean.surname}"></h:inputText>
+                <br/>
+                <h:outputText value="Email:"></h:outputText>
+                <h:inputText id="emailIn" value="#{registerRequesterBean.email}"></h:inputText>
+                <br/>
+                <h:outputText value="Student Number:"></h:outputText>
+                <h:inputText id="studentNumberIn" value="#{registerRequesterBean.studentNumber}"></h:inputText>
+                <br/>
+                <h:outputText value="Academic Unit:"></h:outputText>
+                <h:inputText id="academicUnitIn" value="#{registerRequesterBean.academicUnit}"></h:inputText>
+                <br/>
+                <h:outputText value="Program:"></h:outputText>
+                <h:inputText id="programIn" value="#{registerRequesterBean.program}"></h:inputText>
+                <br/>
+                <h:outputText value="Session Number:"></h:outputText>
+                <h:inputText id="sessionNumberIn" value="#{registerRequesterBean.sessionNumber}"></h:inputText>
+                <br/>
+                <h:outputText value="Thesis Topic:"></h:outputText>
+                <h:inputText id="thesisTopicIn" value="#{registerRequesterBean.thesisTopic}"></h:inputText>
+                <br/>
+                <h:outputText value="Bank Account Number:"></h:outputText>
+                <h:inputText id="bankAccountNumberIn" value="#{registerRequesterBean.bankAccountNumber}"></h:inputText>
+                <br/>
+                <h:outputText value="Student Type:"></h:outputText>
+                <h:selectOneRadio value="#{registerRequesterBean.studentType}">
+                    <f:selectItems class="top-kek" value="#{registerRequesterBean.studentTypes}"/>   			
+                </h:selectOneRadio>	
+                <br/>
+                <h:outputText value="Supervisor Given Names:"></h:outputText>
+                <h:inputText id="supervisorGivenNamesIn" value="#{registerRequesterBean.supervisorGivenNames}"></h:inputText>
+                <br/>
+                <h:outputText value="Supervisor Surname:"></h:outputText>
+                <h:inputText id="supervisorSurnameIn" value="#{registerRequesterBean.supervisorSurname}"></h:inputText>
+                <br/>
+                <br/>
+                <h:commandButton class="btn waves-effect waves-light" value="Submit" type="command" actionListener="#{registerRequesterBean.submit()}"/>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

@@ -30,9 +30,9 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
 
     /**
      * Takes the name of a conference and returns a reference to it.
-     * 
+     *
      * @param name
-     * @return 
+     * @return
      */
     @Override
     public Conference findConference(String name) {
@@ -49,17 +49,10 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
     }
 
     @Override
-    public Conference createConference(Date startDate, Date endDate, String name, String website) {
-        Conference newConference= new Conference(startDate, endDate, name, website);
-        em.persist(newConference);
-        return newConference;
-    }
-
-    @Override
-    public ExpenseEntry createEntry(ExpensePolicy expensePolicy, int amount,GrantApplication grantApp) {
-     ExpenseEntry expenseEntry= new ExpenseEntry(expensePolicy,grantApp, amount);
-       em.persist(expenseEntry);
-       return expenseEntry;
+    public Conference createConference(String name, String website, Date startDate, Date endDate) {
+        Conference conference = new Conference(name, website, startDate, endDate);
+        em.persist(conference);
+        return conference;
     }
 
     @Override
@@ -74,27 +67,24 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
         } catch (Exception e) {
         }
         return null;
-     }
+    }
 
     @Override
-    public GrantApplication createGrantApplication(String title, Conference conference, LinkedList<ExpenseEntry> expenses, String description, Requester requester) {
-    GrantApplication grantApp= new GrantApplication(title, conference, description,requester) ;
-    em.persist(grantApp);
-    return grantApp;
+    public GrantApplication createGrantApplication(String title, Conference conference, String description, Requester requester,
+            double registrationAmount, double transportationAmount, double accomodationAmount, double mealsAmount) {
+        GrantApplication grantApp = new GrantApplication(title, conference, description, requester);
+        ExpenseEntry registrationExpenseEntry = new ExpenseEntry(grantApp, registrationAmount, ExpenseTypeEnum.Registration);
+        ExpenseEntry transporationExpenseEntry = new ExpenseEntry(grantApp, transportationAmount, ExpenseTypeEnum.Transportation);
+        ExpenseEntry accomodationExpenseEntry = new ExpenseEntry(grantApp, accomodationAmount, ExpenseTypeEnum.Accomodation);
+        ExpenseEntry mealsExpenseEntry = new ExpenseEntry(grantApp, mealsAmount, ExpenseTypeEnum.Meals);
+        em.persist(grantApp);
+        return grantApp;
     }
 
 
     @Override
-    public SupervisorRecommendation createSupervisorRecommendation(boolean isApproved, boolean isSigned, String requestedChanges, Supervisor supervisor) {
-        SupervisorRecommendation superRec= new SupervisorRecommendation(isApproved,isSigned,requestedChanges, supervisor);
-        em.persist(superRec);
-        return superRec;
-    }
-    
-    
-    
-     public GrantLimit findGrantLimit(RequesterTypeEnum requesterType){
-         try {
+    public GrantLimit findGrantLimit(RequesterTypeEnum requesterType) {
+        try {
             Query query = em.createQuery(
                     "SELECT gL FROM GrantLimit gL"
                     + " WHERE gL.requesterType = :requesterType");
@@ -104,25 +94,54 @@ public class ApplicationFacade implements ApplicationFacadeLocal {
         } catch (Exception e) {
         }
         return null;
-     }
-     public ArrayList<GrantApplication> getListOfGrantApplicationsNeedingSupervisorApproval(Supervisor supervisor){
-          try {
+    }
+
+    @Override
+    public ArrayList<GrantApplication> getListOfGrantApplicationsNeedingSupervisorApproval(Supervisor supervisor) {
+        try {
+            //Query query = em.createQuery(
+            //        "SELECT gA FROM GrantApplication gA"
+            //        + " JOIN Requester r ON gA.requester = r"
+            //       + " WHERE r.supervisor = :supervisor");
             Query query = em.createQuery(
-                    "SELECT gA FROM GrantApplication gA"
-                            + " JOIN Requester r ON gA.requester = r"
-                    + " WHERE r.supervisor = :supervisor");
-            query.setParameter("supervisor", supervisor);
-           List resultList = query.getResultList();
-            ArrayList<GrantApplication> users = new ArrayList<GrantApplication>();
-                    users.addAll(resultList);
-                    return users;
+                    "SELECT gA FROM GrantApplication gA");
+            //query.setParameter("supervisor", supervisor);
+            List resultList = query.getResultList();
+            // ArrayList<Requester> = supervisor.getR
+            ArrayList<GrantApplication> grantApplications = new ArrayList<>();
+            grantApplications.addAll(resultList);
+            return grantApplications;
         } catch (Exception e) {
             System.out.println(e);
         }
-          return null;
+        return null;
+    }
+
+    @Override
+     public void setStatus(GrantApplication grantApp, ApplicationStatusEnum status){
+         grantApp.setStatus(status);
+         //em.merge(grantApp);
      }
+     
+     
+     @Override
+    public Requester getRequester(GrantApplication grantApp){
+      return grantApp.getRequester();
+    }
+    
+    @Override
+    public SupervisorRecommendation createSupervisorRecommendation(Supervisor supervisor,String comments){
+        SupervisorRecommendation superRec = new SupervisorRecommendation(comments,supervisor);
+        em.persist(superRec);
+        return superRec;
+    }
+    
+    @Override
+    public void addSupervisorRecommendation(GrantApplication grantApp,SupervisorRecommendation superRec){
+        grantApp.addSupervisorRecommendation(superRec);
+    }
 
-
+    
     public void persist(Object object) {
         em.persist(object);
     }

@@ -12,6 +12,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.swing.JRadioButton;
 import userSubsystem.RequesterTypeEnum;
 
 /**
@@ -26,7 +27,7 @@ public class RegisterRequesterBean {
 
     @EJB
     private ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem;
-    
+
     private String loginId;
     private String password;
     private String givenNames;
@@ -41,8 +42,8 @@ public class RegisterRequesterBean {
     private RequesterTypeEnum studentType;
     private String supervisorGivenNames;
     private String supervisorSurname;
-    
-    
+    private boolean isMasters;
+
     /**
      * Creates a new instance of CreateApplication
      */
@@ -53,7 +54,7 @@ public class RegisterRequesterBean {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         this.conferenceTravelGrantSystem.addUser(loginId, password, givenNames, surname, email, studentNumber, academicUnit, program, sessionNumber, thesisTopic, bankAccountNumber, studentType, supervisorGivenNames, supervisorSurname);
-        }  
+    }
 
     /**
      * @return the studentTypes
@@ -278,6 +279,19 @@ public class RegisterRequesterBean {
     public void setSupervisorSurname(String supervisorSurname) {
         this.supervisorSurname = supervisorSurname;
     }
-    
-    
+
+    /**
+     * @return the isMasters
+     */
+    public boolean isIsMasters() {
+        return isMasters;
+    }
+
+    /**
+     * @param isMasters the isMasters to set
+     */
+    public void setIsMasters(boolean isMasters) {
+        this.isMasters = isMasters;
+    }
+
 }

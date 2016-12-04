@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package beans;
+package beans.supervisor;
 
 import applicationSubSystem.GrantApplication;
 import control.ConferenceTravelGrantSystemLocal;
@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,32 +23,36 @@ import javax.enterprise.context.RequestScoped;
 public class SupervisorBean {
     
      @EJB
-    private ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem;
-    
+    private ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem;   
     private ArrayList<GrantApplication> applicationsRequiringAttention;
+    private boolean applicationsInitialized = false;
 
-     
     /**
      * Creates a new instance of SupervisorBean
      */
-    public SupervisorBean() {
-        applicationsRequiringAttention = conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
-    }
-
-    public ConferenceTravelGrantSystemLocal getConferenceTravelGrantSystem() {
-        return conferenceTravelGrantSystem;
-    }
-
-    public void setConferenceTravelGrantSystem(ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem) {
-        this.conferenceTravelGrantSystem = conferenceTravelGrantSystem;
-    }
-    
+    public SupervisorBean() {}
     
     public ArrayList<GrantApplication> getApplicationsRequiringAttention() {
+        if (!applicationsInitialized) {
+            applicationsRequiringAttention = conferenceTravelGrantSystem.getApplicationsRequiringSupervisorAttention();
+            applicationsInitialized = true;
+        }
         return applicationsRequiringAttention;
     }
 
     public void setApplicationsRequiringAttention(ArrayList<GrantApplication> applicationsRequiringAttention) {
         this.applicationsRequiringAttention = applicationsRequiringAttention;
+    }
+    
+    public String viewGrant(GrantApplication grant){
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.setAttribute("GrantApp", grant);
+        return "ApplicationReviewScreen";
+    }
+    
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.setAttribute("Supervisor", null);
+        return "/SignInScreen?faces-redirect=true";
     }
 }

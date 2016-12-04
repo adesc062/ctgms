@@ -3,15 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package beans;
+package beans.requester;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import control.ConferenceTravelGrantSystemLocal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import userSubsystem.Requester;
 import userSubsystem.RequesterTypeEnum;
 
 /**
@@ -21,13 +29,21 @@ import userSubsystem.RequesterTypeEnum;
 @Named(value = "applicationCreationBean")
 @RequestScoped
 public class ApplicationCreationBean {
-
+    private final DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
+    
     @EJB
     private ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem;
     private String title;
-    private String status;//should be enum/set value
-    private String conference;
+    private String status;
     private String description;
+    
+    private String conferenceName;
+    private String conferenceWebsite;
+    private Date conferenceStartDate;
+    private Date conferenceEndDate;
+    private String conferenceStartDateString;
+    private String conferenceEndDateString;
+    
     private double registrationAmount;
     private double transportationAmount;
     private double accomodationAmount;
@@ -68,20 +84,6 @@ public class ApplicationCreationBean {
     }
 
     /**
-     * @return the conference
-     */
-    public String getConference() {
-        return conference;
-    }
-
-    /**
-     * @param conference the conference to set
-     */
-    public void setConference(String conference) {
-        this.conference = conference;
-    }
-
-    /**
      * @return the description
      */
     public String getDescription() {
@@ -98,7 +100,17 @@ public class ApplicationCreationBean {
     public void submit() {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
-        this.conferenceTravelGrantSystem.createApplication(this.title, this.description, this.status, this.conference);
+        try {
+        conferenceStartDate = dateFormat.parse(conferenceStartDateString);
+        conferenceEndDate = dateFormat.parse(conferenceEndDateString);
+        } catch (Exception e) {
+            //Do stuff
+        }
+         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Requester requester = (Requester) session.getAttribute("Requester");
+        this.conferenceTravelGrantSystem.createGrantApplication(title, description, status, requester,
+                conferenceName, conferenceWebsite, conferenceStartDate, conferenceEndDate,
+                registrationAmount, transportationAmount, accomodationAmount, mealsAmount);
     }
     
     /**
@@ -155,6 +167,76 @@ public class ApplicationCreationBean {
      */
     public void setMealsAmount(double mealsAmount) {
         this.mealsAmount = mealsAmount;
+    }
+
+    /**
+     * @return the conferenceName
+     */
+    public String getConferenceName() {
+        return conferenceName;
+    }
+
+    /**
+     * @param conferenceName the conferenceName to set
+     */
+    public void setConferenceName(String conferenceName) {
+        this.conferenceName = conferenceName;
+    }
+
+    /**
+     * @return the conferenceWebsite
+     */
+    public String getConferenceWebsite() {
+        return conferenceWebsite;
+    }
+
+    /**
+     * @param conferenceWebsite the conferenceWebsite to set
+     */
+    public void setConferenceWebsite(String conferenceWebsite) {
+        this.conferenceWebsite = conferenceWebsite;
+    }
+
+    /**
+     * @return the conferenceStartDate
+     */
+    public Date getConferenceStartDate() {
+        return conferenceStartDate;
+    }
+
+    /**
+     * @param conferenceStartDate the conferenceStartDate to set
+     */
+    public void setConferenceStartDate(Date conferenceStartDate) {
+        this.conferenceStartDate = conferenceStartDate;
+    }
+
+    /**
+     * @return the conferenceStartDateString
+     */
+    public String getConferenceStartDateString() {
+        return conferenceStartDateString;
+    }
+
+    /**
+     * @param conferenceStartDateString the conferenceStartDateString to set
+     */
+    public void setConferenceStartDateString(String conferenceStartDateString) {
+        this.conferenceStartDateString = conferenceStartDateString;
+    }
+
+    /**
+     * @return the conferenceEndDateString
+     */
+    public String getConferenceEndDateString() {
+        return conferenceEndDateString;
+    }
+
+    /**
+     * @param conferenceEndDateString the conferenceEndDateString to set
+     */
+    public void setConferenceEndDateString(String conferenceEndDateString) {
+        this.conferenceEndDateString = conferenceEndDateString;
     }
 
 }
