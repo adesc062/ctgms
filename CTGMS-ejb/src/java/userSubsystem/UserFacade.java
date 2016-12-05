@@ -22,6 +22,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.mail.Message;
@@ -41,6 +42,9 @@ import javax.servlet.http.HttpSession;
  */
 @Stateless
 public class UserFacade implements UserFacadeLocal {
+
+    @EJB
+    private EmailSender emailSender;
 
     @PersistenceContext(unitName = "CTGMS-ejbPU")
     private EntityManager em;
@@ -237,11 +241,11 @@ public class UserFacade implements UserFacadeLocal {
     
     public boolean emailUser(String recipientEmail, String subject, String text) {
 
-        String from = "ctgsteamone2016@gmail.com";
+        /*String from = "ctgsteamone2016@gmail.com";
         String host = "localhost";
-
+        
         Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", host);
+        properties.setProperty("smtp.gmail.com", host);
         Session session = Session.getDefaultInstance(properties);
         try {
             MimeMessage message = new MimeMessage(session);
@@ -250,11 +254,11 @@ public class UserFacade implements UserFacadeLocal {
             message.setSubject(subject);
             message.setText(text);
             Transport.send(message);
-            System.out.println("Email sent successfully");
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
-        } 
-        return true;
+            System.out.println("Email sent successfully");*/
+      
+            emailSender.sendEmail(recipientEmail, subject, text);
+            return true;
+       
     }
 
 }
