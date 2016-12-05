@@ -34,7 +34,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.mail.HtmlEmail;
 
 /**
  *
@@ -236,88 +235,25 @@ public class UserFacade implements UserFacadeLocal {
         return null;
     }
     
-    public boolean emailUser(String recipentEmail, String subject, String text) {
+    public boolean emailUser(String recipientEmail, String subject, String text) {
 
         String from = "ctgsteamone2016@gmail.com";
         String host = "localhost";
 
-        HtmlEmail email = new HtmlEmail();
-        email.setHostName("smtp.gmail.com");
-        email.setSmtpPort(465);
-        email.setSSLOnConnect(true);
-        email.setAuthentication("ctgsteamone2016@gmail.com", "ctgms2016");
-
-        try {
-            email.setFrom(from);
-            email.addTo(recipentEmail);
-            email.setSubject(subject);
-            email.setHtmlMsg(text);
-            email.send();
-            System.out.println("Email sent successfully42343");
-        } catch (Exception e) {
-            System.out.println("Error sending email23" + e);
-
-        }
-
-        /*
-        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-        // Get a Properties object
-        Properties props = System.getProperties();
-        props.setProperty("mail.smtps.host", "smtp.gmail.com");
-        props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
-        props.setProperty("mail.smtp.socketFactory.fallback", "false");
-        props.setProperty("mail.smtp.port", "465");
-        props.setProperty("mail.smtp.socketFactory.port", "465");
-        props.setProperty("mail.smtps.auth", "true");
-
-        /*
-        If set to false, the QUIT command is sent and the connection is immediately closed. If set 
-        to true (the default), causes the transport to wait for the response to the QUIT command.
-
-        ref :   http://java.sun.com/products/javamail/javadocs/com/sun/mail/smtp/package-summary.html
-                http://forum.java.sun.com/thread.jspa?threadID=5205249
-                smtpsend.java - demo program from javamail
-        props.put("mail.smtps.quitwait", "false");
-        Session session = Session.getInstance(props, null);
-
-        // -- Create a new message --
-        final MimeMessage msg = new MimeMessage(session);
-
-        // -- Set the FROM and TO fields --
-        try {
-            msg.setFrom(new InternetAddress("ctgmsTeamOne2016@gmail.com"));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipentEmail, false));
-            msg.setSubject(subject);
-            msg.setText(text, "utf-8");
-            msg.setSentDate(new Date());
-
-            SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
-
-            t.connect("smtp.gmail.com", "ctgmsTeamOne2016", "ctgms2016");
-            t.sendMessage(msg, msg.getAllRecipients());
-            t.close();
-            System.out.println("Email sent successfully");
-        } catch (Exception e) {
-            System.out.println("Error sending email");
-
-        } */
-
- /*
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", host);
         Session session = Session.getDefaultInstance(properties);
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
             message.setSubject(subject);
             message.setText(text);
             Transport.send(message);
             System.out.println("Email sent successfully");
         } catch (MessagingException mex) {
             mex.printStackTrace();
-        } */
+        } 
         return true;
     }
 
