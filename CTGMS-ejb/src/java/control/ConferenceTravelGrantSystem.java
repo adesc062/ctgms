@@ -84,7 +84,7 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
     public boolean addUser(String loginId, String unhashedPassword, String givenNames, String surname, String email,
             String studentNumber, String academicUnit, String program, String sessionNumber, String thesisTopic,
             String bankAccountNumber, RequesterTypeEnum requesterType, String supervisorGivenNames, String supervisorSurname) {
-        return userFacade.addUser(loginId, thesisTopic, givenNames, surname, email, studentNumber, academicUnit, program, sessionNumber, thesisTopic, bankAccountNumber, requesterType, supervisorGivenNames, supervisorSurname);
+        return userFacade.addUser(loginId, unhashedPassword, givenNames, surname, email, studentNumber, academicUnit, program, sessionNumber, thesisTopic, bankAccountNumber, requesterType, supervisorGivenNames, supervisorSurname);
     }
 
     /**
@@ -113,6 +113,10 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
         }
         applicationFacade.createGrantApplication(title, conference, description, requester,
                 registrationAmount, transportationAmount, accomodationAmount, mealsAmount);
+        String subject = "A new application is pending your approval";
+        String text = "Requester " + requester.getGivenNames() + " " + requester.getSurname() + " has created a new application. Sign into the Conference Travel Grant System to review it.";
+        String supervisorEmail = userFacade.getSupervisorEmail(requester);
+        userFacade.emailUser(supervisorEmail, subject, text);
         return true;
     }
 

@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
@@ -29,26 +30,27 @@ import userSubsystem.RequesterTypeEnum;
 @Named(value = "applicationCreationBean")
 @RequestScoped
 public class ApplicationCreationBean {
+
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
-    
+
     @EJB
     private ConferenceTravelGrantSystemLocal conferenceTravelGrantSystem;
     private String title;
     private String status;
     private String description;
-    
+
     private String conferenceName;
     private String conferenceWebsite;
     private Date conferenceStartDate;
     private Date conferenceEndDate;
     private String conferenceStartDateString;
     private String conferenceEndDateString;
-    
+
     private double registrationAmount;
     private double transportationAmount;
     private double accomodationAmount;
     private double mealsAmount;
-    
+
     /**
      * Creates a new instance of CreateApplication
      */
@@ -101,21 +103,24 @@ public class ApplicationCreationBean {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         try {
-        conferenceStartDate = dateFormat.parse(conferenceStartDateString);
-        conferenceEndDate = dateFormat.parse(conferenceEndDateString);
+            conferenceStartDate = dateFormat.parse(conferenceStartDateString);
+            conferenceEndDate = dateFormat.parse(conferenceEndDateString);
         } catch (Exception e) {
-            //Do stuff
+            FacesMessage msg = new FacesMessage("Invalid date format. Please use yyyy/mm/dd", "");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            context.addMessage("conferenceStartDate", msg);
+            return null;
         }
-         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Requester requester = (Requester) session.getAttribute("Requester");
         this.conferenceTravelGrantSystem.createGrantApplication(title, description, status, requester,
                 conferenceName, conferenceWebsite, conferenceStartDate, conferenceEndDate,
                 registrationAmount, transportationAmount, accomodationAmount, mealsAmount);
-        
+
         //Redirect to main page
         return "/requester/RequesterScreen?faces-redirect=true";
     }
-    
+
     /**
      * @return the registrationAmount
      */

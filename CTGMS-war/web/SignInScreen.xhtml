@@ -17,11 +17,9 @@
             <h:form>
                 <h:outputText value="Username:"></h:outputText>
                 <h:inputText id="loginIdIn" value="#{signInBean.loginId}"
-                             a:placeholder="Username"
                              required="true" requiredMessage="Please enter your Username"></h:inputText>
                 <h:outputText value="Password:"></h:outputText>
                 <h:inputSecret id="passwordIn" value="#{signInBean.password}"
-                               a:placeholder="Password"
                                required="true" requiredMessage="Please enter your Password"></h:inputSecret>
                 <br></br>
                 <h:commandButton class="btn waves-effect waves-light" value="Sign In" type="command" action="#{signInBean.signIn()}"/>

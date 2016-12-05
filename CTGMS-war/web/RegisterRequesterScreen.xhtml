@@ -27,7 +27,8 @@
                 <br/>
                 <h:outputText value="Email:"></h:outputText>
                 <h:inputText id="emailIn" required="true" value="#{registerRequesterBean.email}">
-                    <f:validateRegex pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$" for="emailIn"></f:validateRegex></h:inputText>
+                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                </h:inputText>
                 <br/>
                 <h:outputText value="Student Number:"></h:outputText>
                 <h:inputText id="studentNumberIn" required="true" value="#{registerRequesterBean.studentNumber}"></h:inputText>
@@ -54,14 +55,14 @@
                 <br/>
                 <h:outputText value="Supervisor Given Names:"></h:outputText>
                 <h:inputText id="supervisorGivenNamesIn" required="true" value="#{registerRequesterBean.supervisorGivenNames}">
-                    <f:validator validatorId="supervisorValidator"/>
+                    <h:message for="supervisorGivenNamesIn" />
                 </h:inputText>
                 <br/>
                 <h:outputText value="Supervisor Surname:"></h:outputText>
                 <h:inputText id="supervisorSurnameIn" value="#{registerRequesterBean.supervisorSurname}"></h:inputText>
                 <br/>
                 <br/>
-                <h:commandButton class="btn waves-effect waves-light" value="Submit" type="command" actionListener="#{registerRequesterBean.submit()}"/>
+                <h:commandButton class="btn waves-effect waves-light" value="Submit" type="command" action="#{registerRequesterBean.submit()}"/>
             </h:form>
         </div>
     </h:body>

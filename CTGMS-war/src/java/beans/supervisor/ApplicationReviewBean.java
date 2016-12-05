@@ -44,26 +44,28 @@ public class ApplicationReviewBean {
 
     private boolean initialized = false;
 
-    public void accept() {
+    public String accept() {
         makeRecommendation(ApplicationStatusEnum.PENDING_FACULTY_APPROVAL);
+        return "/supervisor/SupervisorScreen?faces-redirect=true";
     }
 
-    public void markIncomplete() {
+    public String markIncomplete() {
         makeRecommendation(ApplicationStatusEnum.INCOMPLETE);
+        return "/supervisor/SupervisorScreen?faces-redirect=true";
     }
 
-    public void refuse() {
+    public String refuse() {
         makeRecommendation(ApplicationStatusEnum.REFUSED);
+        return "/supervisor/SupervisorScreen?faces-redirect=true";
     }
 
-    public String makeRecommendation(ApplicationStatusEnum status) {
+    public boolean makeRecommendation(ApplicationStatusEnum status) {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         this.conferenceTravelGrantSystem.makeRecommendation(status, (Supervisor) session.getAttribute("Supervisor"),
                 this.comments, (GrantApplication) session.getAttribute("GrantApp"));
-        //return to view page
-        return "/supervisor/SupervisorScreen?faces-redirect=true";
+        return true;
     }
 
     public String getTitle() {
@@ -175,7 +177,8 @@ public class ApplicationReviewBean {
     /**
      * Creates a new instance of ApplicationReviewBean
      */
-    public ApplicationReviewBean() {}
+    public ApplicationReviewBean() {
+    }
 
     /**
      * @return the requesterName

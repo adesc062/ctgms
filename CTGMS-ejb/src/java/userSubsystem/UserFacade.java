@@ -48,7 +48,7 @@ public class UserFacade implements UserFacadeLocal {
 
     @PersistenceContext(unitName = "CTGMS-ejbPU")
     private EntityManager em;
-    
+
     @Override
     public byte[] findSalt(String loginId) {
         try {
@@ -92,20 +92,13 @@ public class UserFacade implements UserFacadeLocal {
         GrantApplication dbGrantApp = em.find(GrantApplication.class, grantApp.getId());
         Requester requester = dbGrantApp.getRequester();
         return requester.getEmail();
-        /*try {
-            Query query = em.createQuery(
-                    "SELECT r FROM Requester r"
-                    + " JOIN GrantApplication gA"
-                    + " WHERE gA = :grantApp");
-            query.setParameter("grantApp", dbGrantApp);
-            List resultList = query.getResultList();
-            ArrayList<Requester> requesters = new ArrayList<Requester>();
-            requesters.addAll(resultList);
-            Requester requester = requesters.get(0);
-            return requester.getEmail();
-        } catch (Exception e) {
-        }
-        return "failedToGetEmail"; */
+    }
+    
+    @Override
+    public String getSupervisorEmail(Requester requester) {
+        Requester dbRequester = em.find(Requester.class, requester.getLoginId());
+        Supervisor supervisor = dbRequester.getSupervisor();
+        return supervisor.getEmail();
     }
 
     @Override
@@ -120,8 +113,8 @@ public class UserFacade implements UserFacadeLocal {
             List resultList = query.getResultList();
             ArrayList<Supervisor> supervisors = new ArrayList<Supervisor>();
             supervisors.addAll(resultList);
-            Supervisor sup = supervisors.get(0);
-            return sup;
+            Supervisor supervisor = supervisors.get(0);
+            return supervisor;
         } catch (Exception e) {
         }
         return null;
@@ -133,11 +126,9 @@ public class UserFacade implements UserFacadeLocal {
         try {
             user = em.find(User.class, loginId);
         } catch (Exception e) {
-
         }
         if (user != null) {
             try {
-    
                 //Check password validity
                 byte[] salt = user.getSalt();
                 String saltString = new String(salt, "UTF-8");
@@ -231,34 +222,16 @@ public class UserFacade implements UserFacadeLocal {
             query.setParameter("loginId", loginId);
             List resultList = query.getResultList();
             ArrayList<User> users = new ArrayList<User>();
-                    users.addAll(resultList);
+            users.addAll(resultList);
             return !users.isEmpty();
         } catch (Exception e) {
             System.out.println(e);
         }
         return null;
     }
-    
+
     public boolean emailUser(String recipientEmail, String subject, String text) {
-
-        /*String from = "ctgsteamone2016@gmail.com";
-        String host = "localhost";
-        
-        Properties properties = System.getProperties();
-        properties.setProperty("smtp.gmail.com", host);
-        Session session = Session.getDefaultInstance(properties);
-        try {
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(from));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
-            message.setSubject(subject);
-            message.setText(text);
-            Transport.send(message);
-            System.out.println("Email sent successfully");*/
-      
-            emailSender.sendEmail(recipientEmail, subject, text);
-            return true;
-       
+        emailSender.sendEmail(recipientEmail, subject, text);
+        return true;
     }
-
 }

@@ -10,8 +10,11 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.faces.validator.ValidatorException;
 import javax.swing.JRadioButton;
 import userSubsystem.RequesterTypeEnum;
 
@@ -44,6 +47,8 @@ public class RegisterRequesterBean {
     private String supervisorSurname;
     private boolean isMasters;
 
+    //private UIComponent mybutton;
+
     /**
      * Creates a new instance of CreateApplication
      */
@@ -53,7 +58,15 @@ public class RegisterRequesterBean {
     public String submit() {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
-        this.conferenceTravelGrantSystem.addUser(loginId, password, givenNames, surname, email, studentNumber, academicUnit, program, sessionNumber, thesisTopic, bankAccountNumber, studentType, supervisorGivenNames, supervisorSurname);
+        if (this.conferenceTravelGrantSystem.findSupervisorByName(supervisorGivenNames, supervisorSurname) == null) {
+            FacesMessage msg = new FacesMessage("Supervisor validation failed. Please provide a valid supervisor.", "");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            context.addMessage("supervisorGivenNamesIn", msg);
+            return null;
+        }
+        this.conferenceTravelGrantSystem.addUser(loginId, password, givenNames, surname, email,
+                studentNumber, academicUnit, program, sessionNumber, thesisTopic, bankAccountNumber, studentType,
+                supervisorGivenNames, supervisorSurname);
         return "/SignInScreen?faces-redirect=true";
     }
 
