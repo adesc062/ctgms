@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpSession;
@@ -30,17 +31,24 @@ public class SignInBean {
 
     private String loginId;
     private String password;
+    private String loginMessage;
 
     /**
      * Creates a new instance of CreateApplication
      */
     public SignInBean() {
+        this.setLoginMessage("");
     }
 
     public String signIn() {
         User user = conferenceTravelGrantSystem.signIn(loginId, password);
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        session.setAttribute("Requester", null);
+         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        if(user==null){
+            this.setLoginMessage("INVALID LOGIN");
+            return null;
+        }
+        else{
+       session.setAttribute("Requester", null);
         session.setAttribute("Supervisor", null);
         if (user.getClass().getName().equals("userSubsystem.Requester")) {
             session.setAttribute("Requester", user);
@@ -50,6 +58,7 @@ public class SignInBean {
             return "supervisor/SupervisorScreen?faces-redirect=true";
         }
         return null;
+        }
     }
 
     public String registerRequesterAccount() {
@@ -86,6 +95,20 @@ public class SignInBean {
      */
     public void setLoginId(String loginId) {
         this.loginId = loginId;
+    }
+
+    /**
+     * @return the loginMessage
+     */
+    public String getLoginMessage() {
+        return loginMessage;
+    }
+
+    /**
+     * @param loginMessage the loginMessage to set
+     */
+    public void setLoginMessage(String loginMessage) {
+        this.loginMessage = loginMessage;
     }
 
 }
