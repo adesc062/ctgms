@@ -130,10 +130,13 @@ public class ConferenceTravelGrantSystem implements ConferenceTravelGrantSystemL
         switch (status) {
             case INCOMPLETE:
                 subject = subject + "incomplete";
+                break;
             case PENDING_FACULTY_APPROVAL:
                 subject = subject + "approved";
+                break;
             case REFUSED:
                 subject = subject + "refused";
+                break;
             default:
                 break;             
         }      
